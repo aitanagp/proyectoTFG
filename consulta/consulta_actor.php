@@ -28,7 +28,7 @@ if(isset($dbcon)) {
     $idactor = $_GET['idactor'];
 
     // SQL query
-    $sql = "SELECT p.titulo, p.imagen, i.nombre, p.anyo_produccion, p.nacionalidad
+    $sql = "SELECT p.titulo, p.imagen as pelicula_imagen, i.nombre, p.anyo_produccion, p.nacionalidad, i.imagen as actor_imagen
             FROM pelicula p
             JOIN actua a ON p.idpelicula = a.idpelicula
             JOIN interpretes i ON a.idactor = i.idactor
@@ -57,10 +57,11 @@ if(isset($dbcon)) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<tr>
                     <td>" . $row["nombre"] . "</td>
-                    <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
+                    <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Image' width='100'></td>
                     <td>" . $row["titulo"] . "</td>
                     <td>" . $row["anyo_produccion"] . "</td>
                     <td>" . $row["nacionalidad"] . "</td>
+                    <td><img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Image' width='100'></td>
                   </tr>";
         }
         echo "</table>";
