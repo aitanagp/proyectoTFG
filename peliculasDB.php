@@ -35,6 +35,7 @@ if(isset($dbcon)) {
         idremake INTEGER,
         iddirector INTEGER,
         idguion INTEGER,
+        imagen longblob NOT NULL,
         PRIMARY KEY(idpelicula),
         FOREIGN KEY (iddirector) REFERENCES director(iddirector),
         FOREIGN KEY (idguion) REFERENCES guion(idguion),

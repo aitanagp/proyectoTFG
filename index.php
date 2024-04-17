@@ -10,11 +10,11 @@
     <ul>
         <li><a href="alta/alta_peliculas.php">Alta de Películas</a></li>
         <li><a href="eliminar/elimina_peliculas.php">Eliminación de Películas</a></li>
-        <li><a href="consulta/busca_peliculas.php">Consulta de Películas</a></li>
-        <li><a href="consulta_fecha.php">Por fecha</a></li>
-        <li><a href="consulta_director.php">Por director</a></li>
+        <li><a href="consulta/consulta_peliculas.php">Consulta de Películas</a></li>
+        <li><a href="consulta/consulta_fecha.php">Por fecha</a></li>
+        <li><a href="consulta/consulta_director.php">Por director</a></li>
         <li><a href="consulta_nombre.php">Por nombre</a></li>
-        <li><a href="consulta_actor.php">Por Actor</a></li>
+        <li><a href="consulta/consulta_actor.php">Por Actor</a></li>
         <li><a href="consulta_premios.php">Por premios recibidos</a></li>
     </ul>
 
