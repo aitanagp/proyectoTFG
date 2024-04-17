@@ -9,11 +9,11 @@ $dbcon = conectaDB($dbname);
 if(isset($dbcon)) {
     $dbTabla = "director";
     $consulta = "CREATE TABLE IF NOT EXISTS $dbTabla (
-            iddirector INTEGER UNSIGNED NOT NULL,
-            nombre VARCHAR(100),
-            anyo_nacimiento YEAR,
-            nacionalidad VARCHAR(50),
-            PRIMARY KEY(iddirector)
+        iddirector INTEGER UNSIGNED NOT NULL,
+        nombre VARCHAR(100),
+        anyo_nacimiento YEAR,
+        nacionalidad VARCHAR(50),
+        PRIMARY KEY(iddirector)
     )";
     creatabla($dbcon, $dbTabla, $consulta);
 
@@ -28,7 +28,7 @@ if(isset($dbcon)) {
 
     $dbTabla = "pelicula";
     $consulta = "CREATE TABLE IF NOT EXISTS $dbTabla (
-        idpelicula INTEGER UNSGINED NOT NULL,
+        idpelicula INTEGER UNSIGNED NOT NULL,
         titulo VARCHAR(100),
         anyo_produccion YEAR,
         nacionalidad VARCHAR(50),
@@ -36,11 +36,12 @@ if(isset($dbcon)) {
         iddirector INTEGER,
         idguion INTEGER,
         PRIMARY KEY(idpelicula),
-        FOREIGN KEY(idremake) REFERENCES pelicula(idpelicula),
-        FOREIGN KEY(iddirector) REFERENCES director(iddirector),
-        FOREIGN KEY(idguion) REFERENCES guion(idguion)
+        FOREIGN KEY (iddirector) REFERENCES director(iddirector),
+        FOREIGN KEY (idguion) REFERENCES guion(idguion),
+        FOREIGN KEY (idremake) REFERENCES pelicula(idpelicula)
     )";
     creatabla($dbcon, $dbTabla, $consulta);
+
 
     $dbTabla = "interpretes";
     $consulta = "CREATE TABLE IF NOT EXISTS $dbTabla (

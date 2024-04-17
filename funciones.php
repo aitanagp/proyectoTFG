@@ -9,13 +9,16 @@ function obtenerdirseg(){
 }
 
 function creatabla($dbcon, $dbTabla, $consulta) {
-    if($dbcon->query($consulta)){
+    try {
+        $stmt = $dbcon->query($consulta);
         print "<p>Tabla $dbTabla creada correctamente. <p> \n";
         print "\n";
-    } else {
+    } catch (PDOException $e) {
         print "<p>Error al crear la tabla $dbTabla. <p>\n";
-        echo "<br>PDO::errorInfo():<br>";
-        echo $dbcon->errorInfo([1], " - ", $dbcon->errorInfo()[2]);
+        print "Error: " . $e->getMessage() . "\n";
+        print "Code: " . $e->getCode() . "\n";
+        print "File: " . $e->getFile() . "\n";
+        print "Line: " . $e->getLine() . "\n";
         print "\n";
     }
     return null;
