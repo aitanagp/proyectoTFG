@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar película por ID de actor</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Buscar película por ID de actor</h1>
-    <form action="" method="get">
+    <header>
+        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Buscar película por ID de actor</h1>
+        </div>
+    </header>
+    <form action="" method="post">
         <label for="idactor">ID de actor:</label>
         <input type="number" name="idactor" id="idactor" required><br>
         <button type="submit">Buscar</button>
     </form>
-</body>
-</html>
+
 
 <?php
 require_once "../funciones.php";
@@ -24,28 +29,22 @@ $dbname="peliculas";
 $dbcon = conectaDB($dbname);
 
 if(isset($dbcon)) {
-    // Get search query from URL
-    $idactor = $_GET['idactor'];
+    if(isset($_POST['idactor'])) {
+    $idactor = $_POST['idactor'];
 
-    // SQL query
     $sql = "SELECT p.titulo, p.imagen as pelicula_imagen, i.nombre, p.anyo_produccion, p.nacionalidad, i.imagen as actor_imagen
             FROM pelicula p
             JOIN actua a ON p.idpelicula = a.idpelicula
             JOIN interpretes i ON a.idactor = i.idactor
             WHERE a.idactor = :idactor";
 
-    // Prepare statement
     $stmt = $dbcon->prepare($sql);
 
-    // Bind parameter
     $stmt->bindParam(':idactor', $idactor);
 
-    // Execute statement
     $stmt->execute();
 
-    // Check if there are results
     if ($stmt->rowCount() > 0) {
-        // Display results in table
         echo "<table border='1'>
                 <tr>
                     <th>Actor</th>
@@ -53,6 +52,7 @@ if(isset($dbcon)) {
                     <th>Película</th>
                     <th>Año de producción</th>
                     <th>Nacionalidad</th>
+                    <th>Imagen</th>
                 </tr>";
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<tr>
@@ -66,17 +66,17 @@ if(isset($dbcon)) {
         }
         echo "</table>";
     } else {
-        // No results found
         echo "No se encontró ninguna película con el ID de actor '$idactor'.";
     }
 
-    // Close connection
     $dbcon = null;
+}
 } else {
-    // Display error message
     echo "Error: No se pudo establecer la conexión con la base de datos.";
 }
 ?>
-<ul>
-    <li><a href="../index.php">Volver al menú</a></li>
-</ul>
+    <ul>
+        <li><a href="../index.php">Volver al menú</a></li>
+    </ul>
+</body>
+</html>

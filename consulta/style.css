@@ -1,0 +1,78 @@
+header {
+    background-color: #ffffff; /* Establece el color de fondo del encabezado en blanco */
+    padding: 20px; /* Agrega relleno de 20px alrededor del encabezado */
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Alinea los elementos verticalmente */
+    position: relative; /* Establece posición relativa para el encabezado */
+}
+body {
+    font-family: Arial, sans-serif; /* Establece la fuente del texto en Arial o una fuente sans-serif genérica */
+    background-color: rgb(172, 198, 245); /* Establece el color de fondo del cuerpo en un tono de azul */
+    margin: 0; /* Elimina el margen exterior del cuerpo */
+    padding: 0; /* Elimina el relleno interior del cuerpo */
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 28px; /* Tamaño de fuente aumentado */
+}
+
+input {
+    width: 300px; /* Ancho de la caja de entrada */
+    padding: 10px; /* Relleno interno */
+    margin-top: 10px; /* Espacio superior */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+button[type="submit"] {
+    padding: 10px 20px; /* Relleno interno */
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al puntero al pasar por encima */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Espacio superior */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2; /* Color de fondo para las celdas de encabezado */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo para filas pares */
+}
+
+tr:hover {
+    background-color: #f2f2f2; /* Cambio de color al pasar el ratón */
+}

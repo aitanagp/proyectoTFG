@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Películas</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Consulta de Películas</h1>
+    <header>
+        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Consulta de Películas</h1>
+        </div>
+    </header>
     <form action="consulta_fecha.php" method="get">
         <label for="anyo">Buscar por año de producción:</label>
         <input type="number" name="anyo" id="anyo" required><br>

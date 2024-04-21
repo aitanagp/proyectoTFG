@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Películas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <header>
+        <img src="imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Base de Datos de Películas</h1>
+        </div>
+    </header>
+    
     <h1 class="titulo" onclick="toggleMenu('peliculasMenu')">Películas</h1>
     <ul id="peliculasMenu" class="menu">
         <li><a href="alta/alta_peliculas.php">Alta de Películas</a></li>
         <li><a href="eliminar/elimina_peliculas.php">Eliminación de Películas</a></li>
-        <li><a href="consulta/consulta_peliculas.php">Consulta de Películas</a></li>
-        <li><a href="consulta/consulta_fecha.php">Por fecha</a></li>
-        <li><a href="consulta/consulta_director.php">Por director</a></li>
-        <li><a href="consulta_nombre.php">Por nombre</a></li>
-        <li><a href="consulta/consulta_actor.php">Por Actor</a></li>
-        <li><a href="consulta_premios.php">Por premios recibidos</a></li>
+        <li><a>Consulta de Películas</a></li>
+            <li><a href="consulta/consulta_fecha.php">Por fecha</a></li>
+            <li><a href="consulta/consulta_director.php">Por director</a></li>
+            <li><a href="consulta/consulta_peliculas.php">Por nombre</a></li>
+            <li><a href="consulta/consulta_actor.php">Por Actor</a></li>
+            <li><a href="consulta_premios.php">Por premios recibidos</a></li>
     </ul>
 
     <h1 class="titulo" onclick="toggleMenu('actoresMenu')">Actores</h1>

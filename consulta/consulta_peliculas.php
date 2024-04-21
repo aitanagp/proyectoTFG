@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos película</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <header>
+        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Datos de la Película</h1>
+        </div>
+    </header>
     <form method="post" action="">
         <label for="titulo_pelicula">Título Película:</label>
-        <input type="text" name="titulo_pelicula" id="titulo_pelicula" required><br>
+        <input type="text" name="titulo_pelicula" id="titulo_pelicula" required>
         <button type="submit">Buscar</button>
     </form>
 
@@ -66,7 +75,7 @@
     } else {
         echo "Error: No se pudo establecer la conexión con la base de datos.";
     }
-    ?>
+?>
     <ul>
         <li><a href="../index.php">Volver al menú</a></li>
     </ul>
