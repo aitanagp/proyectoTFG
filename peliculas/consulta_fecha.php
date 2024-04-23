@@ -26,13 +26,13 @@ require_once "../funciones.php";
 $ruta = obtenerdirseg();
 require_once $ruta."conectaDB.php";
 
-$dbname="peliculas";
+$dbname="mydb";
 $dbcon = conectaDB($dbname);
 
 if(isset($dbcon)) {
     $anyo = isset($_GET['anyo']) ? $_GET['anyo'] : '';
 
-    $sql = "SELECT * FROM pelicula WHERE anyo_produccion = :anyo";
+    $sql = "SELECT * FROM pelicula WHERE anyo_prod = :anyo";
 
     $stmt = $dbcon->prepare($sql);
 
@@ -56,7 +56,7 @@ if(isset($dbcon)) {
             echo "<tr>
                     <td>" . $row["idpelicula"] . "</td>
                     <td>" . $row["titulo"] . "</td>
-                    <td>" . $row["anyo_produccion"] . "</td>
+                    <td>" . $row["anyo_prod"] . "</td>
                     <td>" . $row["nacionalidad"] . "</td>
                     <td>" . $row["idremake"] . "</td>
                     <td>" . $row["iddirector"] . "</td>

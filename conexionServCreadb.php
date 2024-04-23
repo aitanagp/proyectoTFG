@@ -19,7 +19,7 @@ function conectaSerDB() {
 $dbcon = conectaSerDB();
 
 if (isset($dbcon)) {
-    $dbname = "peliculas"; //nombre de la base de datos
+    $dbname = "mydb"; //nombre de la base de datos
 
     $consultaCreaDB = "CREATE DATABASE $dbname
                         CHARACTER SET utf8mb4
