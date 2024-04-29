@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar por actor</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 
 <body>
@@ -33,44 +33,41 @@
         if (isset($_POST['nombre_actor'])) {
             $nombre_actor = $_POST['nombre_actor'];
 
-            $sql = "SELECT p.titulo, p.imagen as pelicula_imagen, i.nombre_inter as nombre, p.anyo_prod as anyo_produccion, p.nacionalidad, i.imagen as actor_imagen
-                    FROM pelicula p
-                    JOIN actua a ON p.idpelicula = a.idpelicula
-                    JOIN interprete i ON a.idinterprete = i.idinterprete
+            // Consulta para obtener los premios ganados por el actor y los detalles de la película
+            $sql = "SELECT o.edicion, i.nombre_inter AS actor, i.imagen AS actor_imagen, p.titulo AS pelicula, p.imagen AS pelicula_imagen
+                    FROM o_interprete o
+                    JOIN interprete i ON o.idinterprete = i.idinterprete
+                    JOIN actua a ON i.idinterprete = a.idinterprete
+                    JOIN pelicula p ON a.idpelicula = p.idpelicula
                     WHERE i.nombre_inter LIKE :nombre_actor";
 
             $stmt = $dbcon->prepare($sql);
-
-            // Agregar % al principio y al final del nombre_actor para hacer una búsqueda parcial
             $nombre_actor_like = '%' . $nombre_actor . '%';
-
             $stmt->bindParam(':nombre_actor', $nombre_actor_like);
-
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
+                echo "<h2>Premios ganados por el actor '$nombre_actor'</h2>";
                 echo "<table border='1'>
                         <tr>
+                            <th>Edición</th>
                             <th>Actor</th>
-                            <th>Imagen</th>
-                            <th>Película</th>
-                            <th>Año de producción</th>
-                            <th>Nacionalidad</th>
-                            <th>Imagen</th>
+                            <th>Imagen del Actor</th>
+                            <th>Título de la Película</th>
+                            <th>Imagen de la Película</th>
                         </tr>";
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>
-                            <td>" . $row["nombre"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Image' width='100'></td>
-                            <td>" . $row["titulo"] . "</td>
-                            <td>" . $row["anyo_produccion"] . "</td>
-                            <td>" . $row["nacionalidad"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Image' width='100'></td>
+                            <td>" . $row["edicion"] . "</td>
+                            <td>" . $row["actor"] . "</td>
+                            <td><img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Imagen del Actor' width='100'></td>
+                            <td>" . $row["pelicula"] . "</td>
+                            <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Imagen de la Película' width='100'></td>
                           </tr>";
                 }
                 echo "</table>";
             } else {
-                echo "No se encontró ninguna película con el nombre de actor '$nombre_actor'.";
+                echo "No se encontraron premios para el actor '$nombre_actor'.";
             }
 
             $dbcon = null;

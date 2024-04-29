@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos película</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Buscar por actor</title>
+    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 
 <body>
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Datos de la Película</h1>
+            <h1>Buscar por nacionalidad</h1>
         </div>
     </header>
-    <form method="post" action="">
-        <label for="titulo_pelicula">Título Película:</label>
-        <input type="text" name="titulo_pelicula" id="titulo_pelicula" required>
+    <form action="" method="post">
+        <label for="nacionalidad">Nacionalidad de actor:</label>
+        <input type="text" name="nacionalidad" id="nacionalidad" required>
         <button type="submit">Buscar</button>
     </form>
 
@@ -30,44 +30,40 @@
     $dbcon = conectaDB($dbname);
 
     if (isset($dbcon)) {
-        if (isset($_POST['titulo_pelicula'])) {
-            $titulo_pelicula = $_POST['titulo_pelicula'];
+        if (isset($_POST['nacionalidad'])) {
+            $nacionalidad = $_POST['nacionalidad'];
 
-            $sql = "SELECT titulo, anyo_prod, p.nacionalidad as peli_nacionalidad, nombre, p.imagen
-            FROM pelicula p
-            JOIN director d ON d.idpelicula=p.idpelicula 
-            WHERE titulo LIKE :titulo_pelicula";
+            $sql = "SELECT nombre_inter, nacionalidad, imagen
+                    FROM interprete 
+                    WHERE nacionalidad LIKE :nacionalidad";
 
             $stmt = $dbcon->prepare($sql);
 
-            $stmt->bindValue(':titulo_pelicula', "%$titulo_pelicula%");
+            // Agregar % al principio y al final para hacer una búsqueda parcial
+            $nacionalidad_like = '%' . $nacionalidad . '%';
+
+            $stmt->bindParam(':nacionalidad', $nacionalidad_like);
 
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
                 echo "<table border='1'>
                         <tr>
-                            <th>Título</th>
-                            <th>Año de producción</th>
+                            <th>Actor</th>
                             <th>Nacionalidad</th>
-                            <th>Director</th>
                             <th>Imagen</th>
                         </tr>";
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>
-                            <td>" . $row["titulo"] . "</td>
-                            <td>" . $row["anyo_prod"] . "</td>
-                            <td>" . $row["peli_nacionalidad"] . "</td>
-                            <td>" . $row["nombre"] . "</td>
+                            <td>" . $row["nombre_inter"] . "</td>
+                            <td>" . $row["nacionalidad"] . "</td>
                             <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
                           </tr>";
                 }
                 echo "</table>";
             } else {
-                echo "No se encontraron películas con el título '$titulo_pelicula'.";
+                echo "No se encontró ninguna película con el nombre de actor '$nacionalidad'.";
             }
-
-            $stmt = null;
 
             $dbcon = null;
         }
@@ -75,7 +71,6 @@
         echo "Error: No se pudo establecer la conexión con la base de datos.";
     }
     ?>
-
     <br><br>
     <footer>
         <li><a href="../index.php">Volver al menú</a></li>

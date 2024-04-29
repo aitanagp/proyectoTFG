@@ -15,23 +15,4 @@ function conectaSerDB() {
         exit();
     }
 }
-
-$dbcon = conectaSerDB();
-
-if (isset($dbcon)) {
-    $dbname = "mydb"; //nombre de la base de datos
-
-    $consultaCreaDB = "CREATE DATABASE $dbname
-                        CHARACTER SET utf8mb4
-                        COLLATE utf8mb4_unicode_ci";
-
-    try {
-        $dbcon->query($consultaCreaDB);
-        print "<p>Base de datos '$dbname' creada correctamente. <p>";
-    } catch (PDOException $e) {
-        print "<p> Error al crear la base de datos '$dbname'. <p>\n";
-        echo "Código de error: ", $dbcon->errorCode(), "<br>";
-        echo "Mensaje de error: ", $e->getMessage();
-    }
-}
 ?>

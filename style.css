@@ -1,6 +1,12 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: black;
+}
+
+main {
+  background-color: black;
+  color: white;
 }
 
 header {
@@ -11,11 +17,11 @@ header {
 
 .logo {
   width: 100px;
-  height: auto; 
+  height: auto;
 }
 
 .title {
-  color:white;
+  color: white;
 }
 
 nav {
@@ -64,7 +70,57 @@ nav ul li ul li a {
   text-decoration: none;
 }
 
-nav ul li input:checked ~ ul {
+nav ul li input:checked~ul {
   display: block;
 }
 
+h2 {
+  background-color: rgb(75, 7, 7);
+  padding: 20px;
+}
+
+.peliculas,
+.interpretes {
+  display: flex;
+  /* Hace que los elementos hijos se muestren en línea */
+  justify-content: space-around;
+  /* Distribuye uniformemente los elementos a lo largo del contenedor */
+  flex-wrap: wrap;
+  /* Permite que los elementos pasen a la siguiente línea si no hay suficiente espacio */
+}
+
+.pelicula,
+.interprete {
+  width: 200px;
+  /* Ancho de imagen*/
+  margin: 10px;
+  /* Espacio entre las imagenes*/
+}
+
+.pelicula img,
+.interprete img {
+  max-width: 100%;
+  /* La imagen se ajustará al ancho del contenedor*/
+  height: auto;
+  /* La altura se ajustará automáticamente para mantener la relación de aspecto */
+}
+
+.interpretes {
+  display: flex;
+  flex-direction: row;
+}
+
+footer {
+  background-color: #333;
+  /* Color de fondo del footer */
+  color: #fff;
+  /* Color del texto en el footer */
+  padding: 20px;
+  /* Espaciado interno del footer */
+  text-align: center;
+  /* Alineación del texto en el centro */
+}
+
+footer li a {
+  color: #ccc;
+}

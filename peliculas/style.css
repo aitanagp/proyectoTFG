@@ -1,16 +1,28 @@
 header {
-    background-color: #ffffff; /* Establece el color de fondo del encabezado en blanco */
-    padding: 20px; /* Agrega relleno de 20px alrededor del encabezado */
+    background-color: #333;
+    /* Establece el color de fondo del encabezado en blanco */
+    color: white;
+    padding: 20px;
+    /* Agrega relleno de 20px alrededor del encabezado */
     display: flex;
-    justify-content: space-between; /* Alinea los elementos a los extremos */
-    align-items: center; /* Alinea los elementos verticalmente */
-    position: relative; /* Establece posición relativa para el encabezado */
+    justify-content: space-between;
+    /* Alinea los elementos a los extremos */
+    align-items: center;
+    /* Alinea los elementos verticalmente */
+    position: relative;
+    /* Establece posición relativa para el encabezado */
 }
+
 body {
-    font-family: Arial, sans-serif; /* Establece la fuente del texto en Arial o una fuente sans-serif genérica */
-    background-color: rgb(172, 198, 245); /* Establece el color de fondo del cuerpo en un tono de azul */
-    margin: 0; /* Elimina el margen exterior del cuerpo */
-    padding: 0; /* Elimina el relleno interior del cuerpo */
+    font-family: Arial, sans-serif;
+    /* Establece la fuente del texto en Arial o una fuente sans-serif genérica */
+    color: white;
+    background-color: rgb(0, 0, 0);
+    /* Establece el color de fondo del cuerpo en un tono de azul */
+    margin: 0;
+    /* Elimina el margen exterior del cuerpo */
+    padding: 0;
+    /* Elimina el relleno interior del cuerpo */
 }
 
 .logo {
@@ -23,56 +35,128 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: white;
     margin-top: 30px;
     cursor: pointer;
-    font-size: 28px; /* Tamaño de fuente aumentado */
+    font-size: 28px;
+    /* Tamaño de fuente aumentado */
 }
 
 input {
-    width: 300px; /* Ancho de la caja de entrada */
-    padding: 10px; /* Relleno interno */
-    margin-top: 10px; /* Espacio superior */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 5px; /* Bordes redondeados */
+    width: 300px;
+    /* Ancho de la caja de entrada */
+    padding: 10px;
+    /* Relleno interno */
+    margin-top: 10px;
+    /* Espacio superior */
+    border: 1px solid #ccc;
+    /* Borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
 }
 
 button[type="submit"] {
-    padding: 10px 20px; /* Relleno interno */
-    background-color: #007bff; /* Color de fondo */
-    color: #fff; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al puntero al pasar por encima */
+    padding: 10px 20px;
+    /* Relleno interno */
+    background-color: #007bff;
+    /* Color de fondo */
+    color: #fff;
+    /* Color del texto */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cambia el cursor al puntero al pasar por encima */
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+    background-color: #0056b3;
+    /* Color de fondo al pasar el ratón */
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px; /* Espacio superior */
+    margin-top: 20px;
+    /* Espacio superior */
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid #ddd;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2; /* Color de fondo para las celdas de encabezado */
+    background-color: #333;
+    /* Color de fondo para las celdas de encabezado */
     font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9; /* Color de fondo para filas pares */
+    background-color: rgb(83, 83, 83);
+    /* Color de fondo para filas pares */
 }
 
 tr:hover {
-    background-color: #f2f2f2; /* Cambio de color al pasar el ratón */
+    background-color: #292929;
+    /* Cambio de color al pasar el ratón */
+}
+
+form select {
+    border: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    /* Elimina los puntos o números predeterminados */
+    padding: 0;
+    /* Elimina el relleno predeterminado */
+    margin: 0;
+    /* Elimina el margen predeterminado */
+    background-color: #f9f9f9;
+}
+
+li {
+    display: inline-block;
+    padding: 5px 10px;
+    display: inline-block;
+    /* Hace que los elementos de lista se ajusten automáticamente al contenido */
+    margin-right: 10px;
+    /* Añade un pequeño margen entre los elementos */
+}
+
+li a {
+    display: inline-block;
+    /* Asegura que los enlaces se ajusten al contenido */
+    padding: 5px;
+    /* Añade un poco de espacio alrededor del enlace */
+    text-decoration: none;
+    /* Elimina el subrayado predeterminado del enlace */
+    color: #333;
+    /* Color de texto para los enlaces */
+}
+
+footer {
+    background-color: #333;
+    /* Color de fondo del footer */
+    color: #fff;
+    /* Color del texto en el footer */
+    padding: 20px;
+    /* Espaciado interno del footer */
+    text-align: center;
+    /* Alineación del texto en el centro */
+}
+
+footer li a {
+    color: #ccc;
 }
