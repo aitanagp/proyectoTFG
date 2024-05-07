@@ -15,7 +15,6 @@
             <h1>Base de Datos de Películas</h1>
         </div>
     </header>
-</body>
 
 <?php
 require_once "../funciones.php";
@@ -62,3 +61,4 @@ if ($stmt->rowCount() > 0) {
     <li><a href="../index.php">Volver al menú</a></li>
     <p>© 2024 AGarcía. Todos los derechos reservados.</p>
 </footer>
+</body>

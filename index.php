@@ -35,8 +35,8 @@
                 <input type="checkbox" id="interpretes">
                 <label for="interpretes">Intérpretes</label>
                 <ul>
-                    <li><a href="alta/alta_actor.php">Alta de actores</a></li>
-                    <li><a href="eliminar/eliminar_actor.php">Eliminación de actores</a></li>
+                    <li><a href="alta/alta_interpretes.php">Alta de actores</a></li>
+                    <li><a href="eliminar/elimina_interpretes.php">Eliminación de actores</a></li>
                     <li><a href="interpretes/consulta_interpretes.php">Interpretes</a></li>
                     <li><a href="peliculas/consulta_actor.php">Por nombre</a></li>
                     <li><a href="interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
@@ -50,7 +50,7 @@
                 <label for="directores">Directores</label>
                 <ul>
                     <li><a href="alta/alta_directores.php">Alta de directores</a></li>
-                    <li><a href="eliminar/eliminar_directores.php">Eliminación de directores</a></li>
+                    <li><a href="eliminar/elimina_director.php">Eliminación de directores</a></li>
                     <li><a href="director/consulta_directores.php">Consulta de directores</a></li>
                     <li><a href="peliculas/consulta_director.php">Por nombre</a></li>
                     <li><a href="director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>

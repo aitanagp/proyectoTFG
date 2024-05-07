@@ -1,126 +1,186 @@
+/* Estilos para el cuerpo de la página */
 body {
   margin: 0;
+  /* Elimina el margen predeterminado */
   font-family: Arial, sans-serif;
+  /* Utiliza la fuente Arial o una fuente sans-serif */
   background-color: black;
+  /* Establece el color de fondo negro */
 }
 
+/* Estilos para la sección principal */
 main {
   background-color: black;
+  /* Fondo negro */
   color: white;
+  /* Texto blanco */
 }
 
+/* Estilos para el encabezado */
 header {
   background-color: #333;
+  /* Fondo gris oscuro */
   padding: 10px;
+  /* Relleno de 10 píxeles */
   text-align: center;
+  /* Texto centrado */
 }
 
+/* Estilos para el logotipo */
 .logo {
   width: 100px;
+  /* Ancho de 100 píxeles */
   height: auto;
+  /* Altura automática */
 }
 
+/* Estilos para el título */
 .title {
   color: white;
+  /* Texto blanco */
 }
 
+/* Estilos para la barra de navegación */
 nav {
   background-color: #333;
+  /* Fondo gris oscuro */
 }
 
+/* Estilos para la lista de navegación */
 nav ul {
   margin: 0;
+  /* Sin margen */
   padding: 0;
+  /* Sin relleno */
   list-style: none;
+  /* Sin viñetas */
 }
 
+/* Estilos para los elementos de la lista de navegación */
 nav ul li {
   display: inline-block;
+  /* Mostrar en línea */
   position: relative;
+  /* Posición relativa */
 }
 
+/* Estilos para los elementos de entrada dentro de la lista de navegación */
 nav ul li input {
   display: none;
+  /* Ocultar los elementos de entrada */
 }
 
+/* Estilos para las etiquetas dentro de la lista de navegación */
 nav ul li label {
   display: block;
+  /* Mostrar como bloque */
   padding: 15px;
+  /* Relleno de 15 píxeles */
   text-decoration: none;
+  /* Sin decoración de texto */
   color: #fff;
+  /* Texto blanco */
   cursor: pointer;
+  /* Cambiar el cursor a un puntero */
 }
 
+/* Estilos para los menús desplegables */
 nav ul li ul {
   display: none;
+  /* Ocultar los menús desplegables */
   position: absolute;
+  /* Posición absoluta */
   background-color: #444;
+  /* Fondo gris oscuro */
   min-width: 100px;
+  /* Ancho mínimo de 100 píxeles */
   z-index: 1;
+  /* Z-index para la superposición */
 }
 
+/* Estilos para los elementos de lista dentro de los menús desplegables */
 nav ul li ul li {
   display: block;
+  /* Mostrar como bloque */
 }
 
+/* Estilos para los enlaces dentro de los menús desplegables */
 nav ul li ul li a {
   display: block;
+  /* Mostrar como bloque */
   padding: 10px;
+  /* Relleno de 10 píxeles */
   color: #fff;
+  /* Texto blanco */
   text-decoration: none;
+  /* Sin decoración de texto */
 }
 
+/* Mostrar los menús desplegables cuando se seleccionan los elementos de entrada */
 nav ul li input:checked~ul {
   display: block;
+  /* Mostrar el menú desplegable */
 }
 
+/* Estilos para los encabezados */
 h2 {
   background-color: rgb(75, 7, 7);
+  /* Fondo rojo oscuro */
   padding: 20px;
+  /* Relleno de 20 píxeles */
 }
 
+/* Estilos para las secciones de películas e intérpretes */
 .peliculas,
 .interpretes {
   display: flex;
-  /* Hace que los elementos hijos se muestren en línea */
+  /* Mostrar en flexbox */
   justify-content: space-around;
-  /* Distribuye uniformemente los elementos a lo largo del contenedor */
+  /* Distribuir el espacio alrededor */
   flex-wrap: wrap;
-  /* Permite que los elementos pasen a la siguiente línea si no hay suficiente espacio */
+  /* Envolver los elementos en múltiples líneas */
 }
 
+/* Estilos para los elementos de película e intérprete */
 .pelicula,
 .interprete {
   width: 200px;
-  /* Ancho de imagen*/
+  /* Ancho de 200 píxeles */
   margin: 10px;
-  /* Espacio entre las imagenes*/
+  /* Margen exterior de 10 píxeles */
 }
 
+/* Estilos para las imágenes dentro de los elementos de película e intérprete */
 .pelicula img,
 .interprete img {
   max-width: 100%;
-  /* La imagen se ajustará al ancho del contenedor*/
+  /* Ancho máximo del 100% */
   height: auto;
-  /* La altura se ajustará automáticamente para mantener la relación de aspecto */
+  /* Altura automática para mantener la proporción */
 }
 
+/* Estilos adicionales para la sección de intérpretes */
 .interpretes {
   display: flex;
+  /* Mostrar en flexbox */
   flex-direction: row;
+  /* Dirección de fila */
 }
 
+/* Estilos para el pie de página */
 footer {
   background-color: #333;
-  /* Color de fondo del footer */
+  /* Fondo gris oscuro */
   color: #fff;
-  /* Color del texto en el footer */
+  /* Texto blanco */
   padding: 20px;
-  /* Espaciado interno del footer */
+  /* Relleno de 20 píxeles */
   text-align: center;
-  /* Alineación del texto en el centro */
+  /* Texto centrado */
 }
 
+/* Estilos para los enlaces dentro del pie de página */
 footer li a {
   color: #ccc;
+  /* Texto gris claro */
 }

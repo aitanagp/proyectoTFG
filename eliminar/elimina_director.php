@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Película</title>
+    <title>Eliminar Director</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Eliminar Película</h1>
+    <h1>Eliminar Director</h1>
     <form action="" method="post">
-        <label for="titulo_pelicula">Título de la Película:</label>
-        <select name="titulo_pelicula" id="titulo_pelicula">
+        <label for="nombre_director">Nombre del Director:</label>
+        <select name="nombre_director" id="nombre_director">
             <?php
-            // Realizar la consulta para obtener los títulos de las películas
+            // Realizar la consulta para obtener los nombres de los directores
             require_once "../funciones.php";
             $ruta = obtenerdirseg();
             require_once $ruta . "conectaDB.php";
@@ -21,41 +21,41 @@
             $dbcon = conectaDB($dbname);
 
             if ($dbcon) {
-                $sql = "SELECT titulo FROM peliculas";
+                $sql = "SELECT nombre FROM directores";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->execute();
 
-                // Iterar sobre los resultados y agregar cada título como una opción en el select
+                // Iterar sobre los resultados y agregar cada nombre como una opción en el select
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['titulo'] . "'>" . $row['titulo'] . "</option>";
+                    echo "<option value='" . $row['nombre'] . "'>" . $row['nombre'] . "</option>";
                 }
             } else {
                 echo "<option value=''>Error al conectar con la base de datos</option>";
             }
             ?>
         </select><br>
-        <input type="submit" value="Eliminar Película">
+        <input type="submit" value="Eliminar Director">
     </form>
 
     <?php
     // Procesar el formulario de eliminación
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Recoger el título de la película a eliminar
-        $titulo_pelicula = $_POST['titulo_pelicula'];
+        // Recoger el nombre del director a eliminar
+        $nombre_director = $_POST['nombre_director'];
 
         // Realizar la eliminación en la base de datos
         $dbname = "mydb";
         $dbcon = conectaDB($dbname);
 
         if ($dbcon) {
-            $sql = "DELETE FROM peliculas WHERE titulo = :titulo_pelicula";
+            $sql = "DELETE FROM directores WHERE nombre = :nombre_director";
             $stmt = $dbcon->prepare($sql);
-            $stmt->bindParam(':titulo_pelicula', $titulo_pelicula);
+            $stmt->bindParam(':nombre_director', $nombre_director);
 
             if ($stmt->execute()) {
-                echo "La película se ha eliminado correctamente.";
+                echo "El director se ha eliminado correctamente.";
             } else {
-                echo "Error al eliminar la película.";
+                echo "Error al eliminar el director.";
             }
         } else {
             echo "Error: No se pudo establecer la conexión con la base de datos.";
