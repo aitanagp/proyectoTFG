@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Intérprete</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 <body>
-    <h1>Eliminar Intérprete</h1>
+    <header>
+        <h1>Eliminar Intérprete</h1>
+</header>
     <form action="" method="post">
         <label for="nombre_interprete">Nombre del Intérprete:</label>
         <select name="nombre_interprete" id="nombre_interprete">
@@ -21,13 +23,13 @@
             $dbcon = conectaDB($dbname);
 
             if ($dbcon) {
-                $sql = "SELECT nombre FROM interprete";
+                $sql = "SELECT nombre_inter FROM interprete";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->execute();
 
-                // Iterar sobre los resultados y agregar cada nombre como una opción en el select
+                // Iterar sobre los resultados y agregar cada nombre_inter como una opción en el select
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['nombre'] . "'>" . $row['nombre'] . "</option>";
+                    echo "<option value='" . $row['nombre_inter'] . "'>" . $row['nombre_inter'] . "</option>";
                 }
             } else {
                 echo "<option value=''>Error al conectar con la base de datos</option>";
@@ -48,7 +50,7 @@
         $dbcon = conectaDB($dbname);
 
         if ($dbcon) {
-            $sql = "DELETE FROM interprete WHERE nombre = :nombre_interprete";
+            $sql = "DELETE FROM interprete WHERE nombre_inter = :nombre_interprete";
             $stmt = $dbcon->prepare($sql);
             $stmt->bindParam(':nombre_interprete', $nombre_interprete);
 

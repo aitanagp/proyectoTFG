@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta de Intérpretes</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 <body>
-    <h1>Alta de Intérpretes</h1>
+    <header>
+        <h1>Alta de Intérpretes</h1>
+    </header>
+
     <form action="" method="post" enctype="multipart/form-data">
         <label for="idinterprete">Id película:</label>
         <input type="number" id="idinterprete" name="idinterprete" required><br>

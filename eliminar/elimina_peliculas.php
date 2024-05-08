@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Película</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 <body>
-    <h1>Eliminar Película</h1>
+    <header>
+        <h1>Eliminar Película</h1>
+    </header>
+    
     <form action="" method="post">
         <label for="titulo_pelicula">Título de la Película:</label>
         <select name="titulo_pelicula" id="titulo_pelicula">
@@ -21,7 +24,7 @@
             $dbcon = conectaDB($dbname);
 
             if ($dbcon) {
-                $sql = "SELECT titulo FROM peliculas";
+                $sql = "SELECT titulo FROM pelicula";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->execute();
 
@@ -48,7 +51,7 @@
         $dbcon = conectaDB($dbname);
 
         if ($dbcon) {
-            $sql = "DELETE FROM peliculas WHERE titulo = :titulo_pelicula";
+            $sql = "DELETE FROM pelicula WHERE titulo = :titulo_pelicula";
             $stmt = $dbcon->prepare($sql);
             $stmt->bindParam(':titulo_pelicula', $titulo_pelicula);
 

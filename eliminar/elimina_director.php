@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Director</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 <body>
     <h1>Eliminar Director</h1>
@@ -12,7 +12,7 @@
         <label for="nombre_director">Nombre del Director:</label>
         <select name="nombre_director" id="nombre_director">
             <?php
-            // Realizar la consulta para obtener los nombres de los directores
+            // Realizar la consulta para obtener los nombres de los director
             require_once "../funciones.php";
             $ruta = obtenerdirseg();
             require_once $ruta . "conectaDB.php";
@@ -21,7 +21,7 @@
             $dbcon = conectaDB($dbname);
 
             if ($dbcon) {
-                $sql = "SELECT nombre FROM directores";
+                $sql = "SELECT nombre FROM director";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->execute();
 
@@ -48,7 +48,7 @@
         $dbcon = conectaDB($dbname);
 
         if ($dbcon) {
-            $sql = "DELETE FROM directores WHERE nombre = :nombre_director";
+            $sql = "DELETE FROM director WHERE nombre = :nombre_director";
             $stmt = $dbcon->prepare($sql);
             $stmt->bindParam(':nombre_director', $nombre_director);
 
