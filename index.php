@@ -63,7 +63,7 @@
                 <label for="premios">Premios</label>
                 <ul>
                     <li><a href="alta/alta_premios.php">Alta de premios</a></li>
-                    <li><a href="eliminar/eliminar_premios.php">Eliminación de premios</a></li>
+                    <li><a href="eliminar/elimina_premios.php">Eliminación de premios</a></li>
                     <li><a href="asignacion_premios.php">Asignación de premios a cada película</a></li>
                 </ul>
             </li>
