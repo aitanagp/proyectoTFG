@@ -7,7 +7,8 @@ $dbname = "mydb";
 $dbcon = conectaDB($dbname);
 
 // Función para obtener las opciones de un select desde la base de datos
-function obtenerOpciones($tabla, $columna) {
+function obtenerOpciones($tabla, $columna)
+{
     global $dbcon;
     $opciones = '';
 
@@ -27,7 +28,8 @@ function obtenerOpciones($tabla, $columna) {
 }
 
 // Función para obtener el ID de un elemento de la base de datos
-function obtenerID($tabla, $campo, $valor) {
+function obtenerID($tabla, $campo, $valor)
+{
     global $dbcon;
     $sql = "SELECT id$tabla FROM $tabla WHERE $campo = :valor";
     $stmt = $dbcon->prepare($sql);
@@ -39,7 +41,7 @@ function obtenerID($tabla, $campo, $valor) {
 
 // Verificar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['titulo']) && isset($_POST['edicion_pelicula'])) {
+    if (isset($_POST['titulo']) && isset($_POST['edicion_pelicula'])) {
         $titulo = $_POST['titulo'];
         $edicion = $_POST['edicion_pelicula'];
         $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
@@ -70,29 +72,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_insert->execute();
     }
 
-    if(isset($_POST['nombre_interprete']) && isset($_POST['edicion_interprete'])) {
+    if (isset($_POST['nombre_interprete']) && isset($_POST['edicion_interprete'])) {
         $nombre_interprete = $_POST['nombre_interprete'];
         $edicion_interprete = $_POST['edicion_interprete'];
         $titulo = $_POST['titulo'];
         $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
         $idinterprete = obtenerID('interprete', 'nombre_inter', $nombre_interprete);
-        
+
         $sql_insert = "INSERT INTO o_interprete (edicion, idinterprete, idpelicula)
                         VALUES (:edicion, :idinterprete, :idpelicula)";
         $stmt_insert = $dbcon->prepare($sql_insert);
         $stmt_insert->bindParam(':edicion', $edicion_interprete);
-        $stmt_insert->bindParam(':idinterprete', $idinterprete); 
+        $stmt_insert->bindParam(':idinterprete', $idinterprete);
         $stmt_insert->bindParam(':idpelicula', $idpelicula);
         $stmt_insert->execute();
     }
 
-    if(isset($_POST['nombre_guion']) && isset($_POST['edicion_guion'])) {
+    if (isset($_POST['nombre_guion']) && isset($_POST['edicion_guion'])) {
         $nombre_guion = $_POST['nombre_guion'];
         $edicion_guion = $_POST['edicion_guion'];
         $titulo = $_POST['titulo'];
         $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
         $idguion = obtenerID('guion', 'nombre_guion', $nombre_guion);
-        
+
         $sql_insert = "INSERT INTO o_guion (edicion, idguion, idpelicula)
                         VALUES (:edicion, :idguion, :idpelicula)";
         $stmt_insert = $dbcon->prepare($sql_insert);
@@ -101,19 +103,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_insert->bindParam(':idpelicula', $idpelicula);
         $stmt_insert->execute();
     }
-    
 
-    }
+
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
     <title>Alta de premios</title>
 </head>
+
 <body>
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
@@ -134,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo obtenerOpciones('director', 'nombre'); ?>
         </select>
         <select id="titulo" name="titulo">
-        <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_director">Edición:</label>
         <input type="text" id="edicion_director" name="edicion_director"><br>
@@ -144,17 +148,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo obtenerOpciones('guion', 'nombre_guion'); ?>
         </select>
         <select id="titulo" name="titulo">
-        <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_guion">Edición:</label>
         <input type="text" id="edicion_guion" name="edicion_guion"><br>
-        
+
         <h2>Mejor Intérprete</h2>
         <select id="nombre_interprete" name="nombre_interprete">
             <?php echo obtenerOpciones('interprete', 'nombre_inter'); ?>
         </select>
         <select id="titulo" name="titulo">
-        <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_interprete">Edición:</label>
         <input type="text" id="edicion_interprete" name="edicion_interprete"><br>
@@ -168,4 +172,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

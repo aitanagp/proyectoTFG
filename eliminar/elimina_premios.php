@@ -58,7 +58,7 @@ if (isset($dbcon)) {
                     <td>" . $row["premio"] . "</td>
                     <td>" . $row["tipo_premio"] . "</td>
                     <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Imagen de la película' width='100'></td>
-                    <td><a href='eliminar_premio.php?id={$row["id"]}&tipo=1'>Eliminar</a></td>
+                    <td><a href='eliminar_premio.php?premio={$row["premio"]}&tipo=1'>Eliminar</a></td>
                 </tr>";
         }
         echo "</table>";
@@ -82,7 +82,7 @@ if (isset($dbcon)) {
                     <td>" . $row["premio"] . "</td>
                     <td>" . $row["tipo_premio"] . "</td>
                     <td><img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Imagen del Actor' width='100'></td>
-                    <td><a href='eliminar_premio.php?id={$row["id"]}&tipo=1'>Eliminar</a></td>
+                    <td><a href='eliminar_premio.php?premio={$row["premio"]}&tipo=1'>Eliminar</a></td>
                 </tr>";
         }
         echo "</table>";
@@ -127,7 +127,7 @@ if (isset($dbcon)) {
                     <td>" . $row["premio"] . "</td>
                     <td>" . $row["tipo_premio"] . "</td>
                     <td><img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Imagen del Director' width='100'></td>
-                    <td><a href='eliminar_premio.php?id={$row["id"]}&tipo=1'>Eliminar</a></td>
+                    <td><a href='eliminar_premio.php?premio={$row["premio"]}&tipo=1'>Eliminar</a></td>
                 </tr>";
         }
         echo "</table>";
