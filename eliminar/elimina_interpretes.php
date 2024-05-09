@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Intérprete</title>
     <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
+
 <body>
     <header>
-        <h1>Eliminar Intérprete</h1>
-</header>
+        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Consulta de Películas por Director</h1>
+        </div>
+    </header>
     <form action="" method="post">
         <label for="nombre_interprete">Nombre del Intérprete:</label>
         <select name="nombre_interprete" id="nombre_interprete">
@@ -70,4 +75,5 @@
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

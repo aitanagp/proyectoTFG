@@ -6,11 +6,14 @@
     <title>Alta de Intérpretes</title>
     <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
+
 <body>
     <header>
-        <h1>Alta de Intérpretes</h1>
+        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Consulta de Películas por Director</h1>
+        </div>
     </header>
-
     <form action="" method="post" enctype="multipart/form-data">
         <label for="idinterprete">Id película:</label>
         <input type="number" id="idinterprete" name="idinterprete" required><br>

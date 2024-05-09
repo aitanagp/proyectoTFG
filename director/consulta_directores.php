@@ -15,6 +15,16 @@
             <h1>Consulta de Películas por Director</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="../peliculas/consulta_director.php">Buscar por nombre</a>
+                <a href="consulta_nacimiento_director.php">Fecha nacimiento</a>
+                <a href="consulta_nacionalidad_diretor.php">Fecha nacimiento</a>
+                <a href="consulta_premios_director.php">Fecha nacimiento</a>
+            </li>
+        </ul>
+    </nav>
     <?php
     require_once "../funciones.php";
     $ruta = obtenerdirseg();
