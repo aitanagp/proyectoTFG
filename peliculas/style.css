@@ -1,16 +1,19 @@
+/* Estilos para el encabezado */
 header {
     background-color: #333;
-    /* Establece el color de fondo del encabezado en blanco */
-    color: white;
-    padding: 20px;
-    /* Agrega relleno de 20px alrededor del encabezado */
-    display: flex;
-    justify-content: space-between;
-    /* Alinea los elementos a los extremos */
-    align-items: center;
-    /* Alinea los elementos verticalmente */
-    position: relative;
-    /* Establece posición relativa para el encabezado */
+    /* Fondo gris oscuro */
+    padding: 10px;
+    /* Relleno de 10 píxeles */
+    text-align: center;
+    /* Texto centrado */
+}
+
+/* Estilos para el logotipo */
+.logo {
+    width: 100px;
+    /* Ancho de 100 píxeles */
+    height: auto;
+    /* Altura automática */
 }
 
 body {
@@ -23,14 +26,6 @@ body {
     /* Elimina el margen exterior del cuerpo */
     padding: 0;
     /* Elimina el relleno interior del cuerpo */
-}
-
-.logo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 50px;
-    height: auto;
 }
 
 h1 {

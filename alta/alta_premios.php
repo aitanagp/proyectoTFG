@@ -39,72 +39,88 @@ function obtenerID($tabla, $campo, $valor)
     return $row["id$tabla"];
 }
 
-// Verificar si se envió el formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Verificar si se envió el formulario para Mejor Película
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_pelicula'])) {
     if (isset($_POST['titulo']) && isset($_POST['edicion_pelicula'])) {
         $titulo = $_POST['titulo'];
         $edicion = $_POST['edicion_pelicula'];
+        // Utiliza el título para obtener el ID de la película
         $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
 
         // Insertar los datos en la tabla de premios
         $sql_insert = "INSERT INTO o_pelicula (edicion, idpelicula)
-                        VALUES (:edicion, :idpelicula)";
+                            VALUES (:edicion, :idpelicula)";
         $stmt_insert = $dbcon->prepare($sql_insert);
         $stmt_insert->bindParam(':edicion', $edicion);
         $stmt_insert->bindParam(':idpelicula', $idpelicula);
         $stmt_insert->execute();
     }
+}
 
+// Verificar si se envió el formulario para Mejor Director
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_director'])) {
     if (isset($_POST['nombre_director']) && isset($_POST['edicion_director'])) {
-        $titulo = $_POST['titulo'];
         $nombre_director = $_POST['nombre_director'];
         $edicion = $_POST['edicion_director'];
+        // Utiliza el título para obtener el ID de la película
+        $titulo = $_POST['titulo_director'];
         $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
+        // Utiliza el nombre del director para obtener su ID
         $iddirector = obtenerID('director', 'nombre', $nombre_director);
 
         // Insertar los datos en la tabla de premios
         $sql_insert = "INSERT INTO o_director (edicion, iddirector, idpelicula)
-                        VALUES (:edicion, :iddirector, :idpelicula)";
+                            VALUES (:edicion, :iddirector, :idpelicula)";
         $stmt_insert = $dbcon->prepare($sql_insert);
         $stmt_insert->bindParam(':edicion', $edicion);
         $stmt_insert->bindParam(':iddirector', $iddirector);
         $stmt_insert->bindParam(':idpelicula', $idpelicula);
         $stmt_insert->execute();
     }
+}
 
-    if (isset($_POST['nombre_interprete']) && isset($_POST['edicion_interprete'])) {
-        $nombre_interprete = $_POST['nombre_interprete'];
-        $edicion_interprete = $_POST['edicion_interprete'];
-        $titulo = $_POST['titulo'];
-        $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
-        $idinterprete = obtenerID('interprete', 'nombre_inter', $nombre_interprete);
-
-        $sql_insert = "INSERT INTO o_interprete (edicion, idinterprete, idpelicula)
-                        VALUES (:edicion, :idinterprete, :idpelicula)";
-        $stmt_insert = $dbcon->prepare($sql_insert);
-        $stmt_insert->bindParam(':edicion', $edicion_interprete);
-        $stmt_insert->bindParam(':idinterprete', $idinterprete);
-        $stmt_insert->bindParam(':idpelicula', $idpelicula);
-        $stmt_insert->execute();
-    }
-
+// Verificar si se envió el formulario para Mejor Guión
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_guion'])) {
     if (isset($_POST['nombre_guion']) && isset($_POST['edicion_guion'])) {
         $nombre_guion = $_POST['nombre_guion'];
         $edicion_guion = $_POST['edicion_guion'];
-        $titulo = $_POST['titulo'];
+        // Utiliza el título para obtener el ID de la película
+        $titulo = $_POST['titulo_guion'];
         $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
+        // Utiliza el nombre del guión para obtener su ID
         $idguion = obtenerID('guion', 'nombre_guion', $nombre_guion);
 
+        // Insertar los datos en la tabla de premios
         $sql_insert = "INSERT INTO o_guion (edicion, idguion, idpelicula)
-                        VALUES (:edicion, :idguion, :idpelicula)";
+                            VALUES (:edicion, :idguion, :idpelicula)";
         $stmt_insert = $dbcon->prepare($sql_insert);
         $stmt_insert->bindParam(':edicion', $edicion_guion);
         $stmt_insert->bindParam(':idguion', $idguion);
         $stmt_insert->bindParam(':idpelicula', $idpelicula);
         $stmt_insert->execute();
     }
+}
 
+// Verificar si se envió el formulario para Mejor Intérprete
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) {
+    if (isset($_POST['nombre_interprete']) && isset($_POST['edicion_interprete'])) {
+        $nombre_interprete = $_POST['nombre_interprete'];
+        $edicion_interprete = $_POST['edicion_interprete'];
+        // Utiliza el título para obtener el ID de la película
+        $titulo = $_POST['titulo_interprete'];
+        $idpelicula = obtenerID('pelicula', 'titulo', $titulo);
+        // Utiliza el nombre del intérprete para obtener su ID
+        $idinterprete = obtenerID('interprete', 'nombre_inter', $nombre_interprete);
 
+        // Insertar los datos en la tabla de premios
+        $sql_insert = "INSERT INTO o_interprete (edicion, idinterprete, idpelicula)
+                            VALUES (:edicion, :idinterprete, :idpelicula)";
+        $stmt_insert = $dbcon->prepare($sql_insert);
+        $stmt_insert->bindParam(':edicion', $edicion_interprete);
+        $stmt_insert->bindParam(':idinterprete', $idinterprete);
+        $stmt_insert->bindParam(':idpelicula', $idpelicula);
+        $stmt_insert->execute();
+    }
 }
 ?>
 
@@ -131,39 +147,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_pelicula">Edición:</label>
-        <input type="number" id="edicion_pelicula" name="edicion_pelicula"><br>
+        <input type="number" id="edicion_pelicula" name="edicion_pelicula">
+        <input type="submit" name="submit_pelicula" value="Agrega Premio">
+    </form>
 
+    <form action="" method="post">
         <h2>Mejor Director</h2>
         <select id="nombre_director" name="nombre_director">
             <?php echo obtenerOpciones('director', 'nombre'); ?>
         </select>
-        <select id="titulo" name="titulo">
+        <select id="titulo_director" name="titulo_director">
             <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_director">Edición:</label>
-        <input type="text" id="edicion_director" name="edicion_director"><br>
+        <input type="text" id="edicion_director" name="edicion_director">
+        <input type="submit" name="submit_director" value="Agrega Premio">
+    </form>
 
+    <form action="" method="post">
         <h2>Mejor Guión</h2>
         <select id="nombre_guion" name="nombre_guion">
             <?php echo obtenerOpciones('guion', 'nombre_guion'); ?>
         </select>
-        <select id="titulo" name="titulo">
+        <select id="titulo_guion" name="titulo_guion">
             <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_guion">Edición:</label>
-        <input type="text" id="edicion_guion" name="edicion_guion"><br>
+        <input type="text" id="edicion_guion" name="edicion_guion">
+        <input type="submit" name="submit_guion" value="Agrega Premio">
+    </form>
 
+    <form action="" method="post">
         <h2>Mejor Intérprete</h2>
         <select id="nombre_interprete" name="nombre_interprete">
             <?php echo obtenerOpciones('interprete', 'nombre_inter'); ?>
         </select>
-        <select id="titulo" name="titulo">
+        <select id="titulo_interprete" name="titulo_interprete">
             <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
         </select>
         <label for="edicion_interprete">Edición:</label>
-        <input type="text" id="edicion_interprete" name="edicion_interprete"><br>
-
-        <input type="submit" value="Agregar Premios">
+        <input type="text" id="edicion_interprete" name="edicion_interprete">
+        <input type="submit" name="submit_interprete" value="Agrega Premio">
     </form>
 
     <br><br>
