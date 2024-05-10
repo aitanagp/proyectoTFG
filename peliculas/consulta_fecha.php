@@ -34,7 +34,7 @@ $dbcon = conectaDB($dbname);
 if (isset($dbcon)) {
     if (isset($_POST['anyo'])) {
         $anyo = $_POST['anyo'];
-        $sql = "SELECT * FROM pelicula WHERE anyo_prod like :anyo";
+        $sql = "SELECT titulo, anyo_prod, nacionalidad, imagen FROM pelicula WHERE anyo_prod like :anyo";
         $stmt = $dbcon->prepare($sql);
         $stmt->bindParam(':anyo', $anyo);
 
@@ -43,22 +43,18 @@ if (isset($dbcon)) {
         if ($stmt->rowCount() > 0) {
             echo "<table border='1'>
             <tr>
-                <th>ID Película</th>
                 <th>Título</th>
                 <th>Año de producción</th>
                 <th>Nacionalidad</th>
-                <th>ID Director</th>
-                <th>ID Guion</th>
+                <th>Imagen</th>
             </tr>";
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>
-                    <td>" . $row["idpelicula"] . "</td>
                     <td>" . $row["titulo"] . "</td>
                     <td>" . $row["anyo_prod"] . "</td>
                     <td>" . $row["nacionalidad"] . "</td>
-                    <td>" . $row["iddirector"] . "</td>
-                    <td>" . $row["idguion"] . "</td>
+                    <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen del película' width='100'></td>
                 </tr>";
             }
             echo "</table>";

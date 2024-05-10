@@ -33,7 +33,7 @@
         if (isset($_POST['titulo_pelicula'])) {
             $titulo_pelicula = $_POST['titulo_pelicula'];
 
-            $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen
+            $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen, anyo_nacimiento as anyo
                     FROM interprete i
                     JOIN actua a ON i.idinterprete = a.idinterprete
                     JOIN pelicula p ON a.idpelicula = p.idpelicula
@@ -52,12 +52,14 @@
                 echo "<table border='1'>
                         <tr>
                             <th>Actor</th>
+                            <th>Nacimiento</th>
                             <th>Imagen</th>
                         </tr>";
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>
                             <td>" . $row["nombre"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
+                            <td>" . $row["anyo"]. "</td>
+                            <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen actor' width='100'></td>
                           </tr>";
                 }
                 echo "</table>";
