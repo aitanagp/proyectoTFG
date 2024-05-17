@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directores</title>
+    <title>Nacimiento</title>
     <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
 
@@ -12,9 +12,19 @@
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Directores</h1>
+            <h1>Por fecha de nacimiento</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_directores.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
+            <li><a href="../director/consulta_directores.php">Consulta</a></li>
+            <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
+            <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
+            <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
+        </ul>
+    </nav>
     <form action="" method="post">
         <label for="anyo">Buscar por año de nacimiento:</label>
         <input type="number" name="anyo" id="anyo" required><br>

@@ -15,6 +15,16 @@
             <h1>Elimina Directores</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_directores.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
+            <li><a href="../director/consulta_directores.php">Consulta</a></li>
+            <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
+            <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
+            <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
+        </ul>
+    </nav>
     <form action="" method="post">
         <label for="nombre_director">Nombre del Director:</label>
         <select name="nombre_director" id="nombre_director">

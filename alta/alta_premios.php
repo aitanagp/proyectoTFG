@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
-</head>
-
-<body>
-    <header>
-        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
-        <div class="title">
-            <h1>Consulta de Películas por Director</h1>
-        </div>
-    </header>
-</body>
-
-</html>
-
 <?php
 require_once "../funciones.php";
 $ruta = obtenerdirseg();
@@ -158,9 +138,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Base de Datos de Películas</h1>
+            <h1>Alta de premios</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_premios.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
+        </ul>
+    </nav>
     <form action="" method="post">
         <h2>Mejor Película</h2>
         <select id="titulo" name="titulo">

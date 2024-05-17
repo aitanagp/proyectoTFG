@@ -15,6 +15,18 @@
             <h1>Consulta de Películas</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_interpretes.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_interpretes.php">Eliminación</a></li>
+            <li><a href="../interpretes/consulta_interpretes.php">Consulta</a></li>
+            <li><a href="../interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
+            <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
+            <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
+            <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
+        </ul>
+    </nav>
+    <br><br>
     <form action="" method="post">
         <label for="anyo">Buscar por año de nacimiento:</label>
         <input type="number" name="anyo" id="anyo" required><br>

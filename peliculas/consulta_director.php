@@ -15,6 +15,18 @@
             <h1>Consulta de Películas por Director</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_peliculas.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_peliculas.php">Eliminación</a></li>
+            <li><a href="../peliculas/consulta_pelicula.php">Consulta</a></li>
+            <li><a href="../peliculas/consulta_fecha.php">Por Fecha</a></li>
+            <li><a href="../peliculas/consulta_director.php">Por director</a></li>
+            <li><a href="../peliculas/consulta_titulo.php">Por título</a></li>
+            <li><a href="../peliculas/consulta_actor.php">Por Actor</a></li>
+            <li><a href="../peliculas/consulta_premios.php">Por premios</a></li>
+        </ul>
+    </nav>
     <form action="" method="post">
         <select id="nombre_director" name="nombre_director" onclick="mostrarDirectores()" required>
             <?php

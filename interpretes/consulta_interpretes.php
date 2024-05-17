@@ -7,7 +7,6 @@
     <title>Intérpretes</title>
     <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
 </head>
-
 <body>
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
@@ -15,6 +14,18 @@
             <h1>Intérpretes</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_interpretes.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_interpretes.php">Eliminación</a></li>
+            <li><a href="../interpretes/consulta_interpretes.php">Consulta</a></li>
+            <li><a href="../interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
+            <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
+            <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
+            <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
+        </ul>
+    </nav>
+    <br><br>
 </body>
 
 <?php

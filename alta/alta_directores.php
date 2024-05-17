@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,19 @@
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Consulta de Películas por Director</h1>
+            <h1>Alta de Directores</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_directores.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
+            <li><a href="../director/consulta_directores.php">Consulta</a></li>
+            <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
+            <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
+            <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
+        </ul>
+    </nav>
     <form action="" method="post" enctype="multipart/form-data">
         <label for="iddirector">Id director:</label>
         <input type="number" id="iddirector" name="iddirector" required><br>
@@ -47,7 +58,7 @@
         $target_dir = "uploads/"; // Directorio donde se guardarán las imágenes
         $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
         $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Insertar los datos en la base de datos
         $dbname = "mydb";
@@ -83,4 +94,5 @@
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

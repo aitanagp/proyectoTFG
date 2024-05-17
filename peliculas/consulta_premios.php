@@ -15,6 +15,18 @@
             <h1>Buscar por película</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_peliculas.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_peliculas.php">Eliminación</a></li>
+            <li><a href="../peliculas/consulta_pelicula.php">Consulta</a></li>
+            <li><a href="../peliculas/consulta_fecha.php">Por Fecha</a></li>
+            <li><a href="../peliculas/consulta_director.php">Por director</a></li>
+            <li><a href="../peliculas/consulta_titulo.php">Por título</a></li>
+            <li><a href="../peliculas/consulta_actor.php">Por Actor</a></li>
+            <li><a href="../peliculas/consulta_premios.php">Por premios</a></li>
+        </ul>
+    </nav>
     <form action="" method="post">
         <label for="titulo_pelicula">Título de la película:</label>
         <input type="text" name="titulo_pelicula" id="titulo_pelicula" required><br>

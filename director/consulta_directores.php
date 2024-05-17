@@ -17,12 +17,12 @@
     </header>
     <nav>
         <ul>
-            <li>
-                <a href="../peliculas/consulta_director.php">Buscar por nombre</a>
-                <a href="consulta_nacimiento_director.php">Fecha nacimiento</a>
-                <a href="consulta_nacionalidad_director.php">Nacionalidad director</a>
-                <a href="consulta_premios_director.php">Premios</a>
-            </li>
+            <li><a href="../alta/alta_directores.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
+            <li><a href="../director/consulta_directores.php">Consulta</a></li>
+            <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
+            <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
+            <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
         </ul>
     </nav>
     <?php

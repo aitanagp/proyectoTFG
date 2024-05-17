@@ -64,64 +64,6 @@ nav ul li {
   /* Posición relativa */
 }
 
-/* Estilos para los elementos de entrada dentro de la lista de navegación */
-nav ul li input {
-  display: none;
-  /* Ocultar los elementos de entrada */
-}
-
-/* Estilos para las etiquetas dentro de la lista de navegación */
-nav ul li label {
-  display: block;
-  /* Mostrar como bloque */
-  padding: 15px;
-  /* Relleno de 15 píxeles */
-  text-decoration: none;
-  /* Sin decoración de texto */
-  color: #fff;
-  /* Texto blanco */
-  cursor: pointer;
-  /* Cambiar el cursor a un puntero */
-}
-
-/* Estilos para los menús desplegables */
-nav ul li ul {
-  display: none;
-  /* Ocultar los menús desplegables */
-  position: absolute;
-  /* Posición absoluta */
-  background-color: #444;
-  /* Fondo gris oscuro */
-  min-width: 100px;
-  /* Ancho mínimo de 100 píxeles */
-  z-index: 1;
-  /* Z-index para la superposición */
-}
-
-/* Estilos para los elementos de lista dentro de los menús desplegables */
-nav ul li ul li {
-  display: block;
-  /* Mostrar como bloque */
-}
-
-/* Estilos para los enlaces dentro de los menús desplegables */
-nav ul li ul li a {
-  display: block;
-  /* Mostrar como bloque */
-  padding: 10px;
-  /* Relleno de 10 píxeles */
-  color: #fff;
-  /* Texto blanco */
-  text-decoration: none;
-  /* Sin decoración de texto */
-}
-
-/* Mostrar los menús desplegables cuando se seleccionan los elementos de entrada */
-nav ul li input:checked~ul {
-  display: block;
-  /* Mostrar el menú desplegable */
-}
-
 /* Estilos para los encabezados */
 h2 {
   background-color: rgb(75, 7, 7);
@@ -184,4 +126,3 @@ footer li a {
   color: #ccc;
   /* Texto gris claro */
 }
-

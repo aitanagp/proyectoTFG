@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,18 @@
             <h1>Consulta de Películas por Director</h1>
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_peliculas.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_peliculas.php">Eliminación</a></li>
+            <li><a href="../peliculas/consulta_pelicula.php">Consulta</a></li>
+            <li><a href="../peliculas/consulta_fecha.php">Por Fecha</a></li>
+            <li><a href="../peliculas/consulta_director.php">Por director</a></li>
+            <li><a href="../peliculas/consulta_titulo.php">Por título</a></li>
+            <li><a href="../peliculas/consulta_actor.php">Por Actor</a></li>
+            <li><a href="../peliculas/consulta_premios.php">Por premios</a></li>
+        </ul>
+    </nav>
     <form action="" method="post" enctype="multipart/form-data">
         <label for="idpelicula">Id película:</label>
         <input type="number" id="idpelicula" name="idpelicula" required><br>
@@ -34,6 +47,7 @@
         <input type="submit" value="Agregar Película">
     </form>
 </body>
+
 </html>
 <?php
 require_once "../funciones.php";
@@ -89,4 +103,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <p>© 2024 AGarcía. Todos los derechos reservados.</p>
 </footer>
 </body>
+
 </html>

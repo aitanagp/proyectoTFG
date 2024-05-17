@@ -10,9 +10,17 @@
 
 <body>
     <header>
-        <h1>Eliminar premios</h1>
+        <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Eliminar premios</h1>
+        </div>
     </header>
-
+    <nav>
+        <ul>
+            <li><a href="../alta/alta_premios.php">Alta</a></li>
+            <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
+        </ul>
+    </nav>
 </body>
 
 </html>
