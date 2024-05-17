@@ -9,12 +9,27 @@
 </head>
 
 <body>
+    <div class="login">
+        <h3>Login</h3>
+        <form action="" method="post">
+            <label for="user">
+                <i class="nombre usuario"></i>
+            </label>
+            <input type="text" name="user" placeholder="user" id="user" required>
+            <label for="pass">
+                <i class="contraseña"></i>
+            </label>
+            <input type="password" name="pass" placeholder="pass" id="pass" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
     <header>
         <img src="imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
     </header>
+
     <nav>
         <ul>
             <li><a href="peliculas/consulta_pelicula.php">Películas</a></li>
