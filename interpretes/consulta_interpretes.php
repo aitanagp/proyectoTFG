@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intérpretes</title>
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
+
 <body>
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
@@ -25,7 +26,11 @@
             <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
         </ul>
     </nav>
-    <br><br>
+    <main>
+
+
+        <?php echo "<h2>Peliculas</h2>"; ?>
+        <br><br>
 </body>
 
 <?php
@@ -65,6 +70,7 @@ if ($stmt->rowCount() > 0) {
 }
 
 ?>
+</main>
 <br><br>
 <footer>
     <li><a href="../index.php">Volver al menú</a></li>

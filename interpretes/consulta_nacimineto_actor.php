@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Películas</title>
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 
 <body>
@@ -26,12 +26,15 @@
             <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
         </ul>
     </nav>
-    <br><br>
-    <form action="" method="post">
-        <label for="anyo">Buscar por año de nacimiento:</label>
-        <input type="number" name="anyo" id="anyo" required><br>
-        <button type="submit">Buscar</button>
-    </form>
+    <main>
+        <?php echo "<h2>Año nacimiento de actores</h2>"; ?>
+
+        <form action="" method="post">
+            <label for="anyo">Buscar por año de nacimiento:</label>
+            <input type="number" name="anyo" id="anyo" required><br>
+            <button type="submit">Buscar</button>
+        </form>
+        <br><br>
 </body>
 
 </html>
@@ -81,6 +84,7 @@ if (isset($dbcon)) {
     echo "Error: No se pudo establecer la conexión con la base de datos.";
 }
 ?>
+</main>
 <br><br>
 <footer>
     <li><a href="../index.php">Volver al menú</a></li>

@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <title>Alta de premios</title>
 </head>
 
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Alta de premios</h1>
+            <h1>Base de Datos de Películas</h1>
         </div>
     </header>
     <nav>
@@ -147,6 +147,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
             <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
         </ul>
     </nav>
+
+    <main>
+    <?php echo "<h2>Añadir Premios</h2>"; ?>
+    
     <form action="" method="post">
         <h2>Mejor Película</h2>
         <select id="titulo" name="titulo">
@@ -202,5 +206,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
-
+</main>
 </html>

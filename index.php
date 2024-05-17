@@ -20,6 +20,7 @@
             <li><a href="peliculas/consulta_pelicula.php">Películas</a></li>
             <li><a href="interpretes/consulta_interpretes.php">Intérpretes</a></li>
             <li><a href="director/consulta_directores.php">Directores</a></li>
+            <li><a href="premios/premios.php">Premios</a></li>
         </ul>
     </nav>
 

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Director</title>
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 
 <body>
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Elimina Directores</h1>
+            <h1>Base de Datos de Películas</h1>
         </div>
     </header>
     <nav>
@@ -25,60 +25,64 @@
             <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
         </ul>
     </nav>
-    <form action="" method="post">
-        <label for="nombre_director">Nombre del Director:</label>
-        <select name="nombre_director" id="nombre_director">
-            <?php
-            // Realizar la consulta para obtener los nombres de los director
-            require_once "../funciones.php";
-            $ruta = obtenerdirseg();
-            require_once $ruta . "conectaDB.php";
+    <main>
+        <?php echo "<h2>Elimina Directores</h2>"; ?>
 
+        <form action="" method="post">
+            <label for="nombre_director">Nombre del Director:</label>
+            <select name="nombre_director" id="nombre_director">
+                <?php
+                // Realizar la consulta para obtener los nombres de los director
+                require_once "../funciones.php";
+                $ruta = obtenerdirseg();
+                require_once $ruta . "conectaDB.php";
+
+                $dbname = "mydb";
+                $dbcon = conectaDB($dbname);
+
+                if ($dbcon) {
+                    $sql = "SELECT nombre FROM director";
+                    $stmt = $dbcon->prepare($sql);
+                    $stmt->execute();
+
+                    // Iterar sobre los resultados y agregar cada nombre como una opción en el select
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='" . $row['nombre'] . "'>" . $row['nombre'] . "</option>";
+                    }
+                } else {
+                    echo "<option value=''>Error al conectar con la base de datos</option>";
+                }
+                ?>
+            </select><br>
+            <input type="submit" value="Eliminar Director">
+        </form>
+
+        <?php
+        // Procesar el formulario de eliminación
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Recoger el nombre del director a eliminar
+            $nombre_director = $_POST['nombre_director'];
+
+            // Realizar la eliminación en la base de datos
             $dbname = "mydb";
             $dbcon = conectaDB($dbname);
 
             if ($dbcon) {
-                $sql = "SELECT nombre FROM director";
+                $sql = "DELETE FROM director WHERE nombre = :nombre_director";
                 $stmt = $dbcon->prepare($sql);
-                $stmt->execute();
+                $stmt->bindParam(':nombre_director', $nombre_director);
 
-                // Iterar sobre los resultados y agregar cada nombre como una opción en el select
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['nombre'] . "'>" . $row['nombre'] . "</option>";
+                if ($stmt->execute()) {
+                    echo "El director se ha eliminado correctamente.";
+                } else {
+                    echo "Error al eliminar el director.";
                 }
             } else {
-                echo "<option value=''>Error al conectar con la base de datos</option>";
+                echo "Error: No se pudo establecer la conexión con la base de datos.";
             }
-            ?>
-        </select><br>
-        <input type="submit" value="Eliminar Director">
-    </form>
-
-    <?php
-    // Procesar el formulario de eliminación
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Recoger el nombre del director a eliminar
-        $nombre_director = $_POST['nombre_director'];
-
-        // Realizar la eliminación en la base de datos
-        $dbname = "mydb";
-        $dbcon = conectaDB($dbname);
-
-        if ($dbcon) {
-            $sql = "DELETE FROM director WHERE nombre = :nombre_director";
-            $stmt = $dbcon->prepare($sql);
-            $stmt->bindParam(':nombre_director', $nombre_director);
-
-            if ($stmt->execute()) {
-                echo "El director se ha eliminado correctamente.";
-            } else {
-                echo "Error al eliminar el director.";
-            }
-        } else {
-            echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
-    }
-    ?>
+        ?>
+    </main>
     <br><br>
     <footer>
         <li><a href="../index.php">Volver al menú</a></li>

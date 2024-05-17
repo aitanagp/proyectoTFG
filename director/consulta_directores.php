@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Directores</title>
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 
 <body>
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Consulta de Películas por Director</h1>
+            <h1>Base de Datos de Películas</h1>
         </div>
     </header>
     <nav>
@@ -25,20 +25,23 @@
             <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
         </ul>
     </nav>
-    <?php
-    require_once "../funciones.php";
-    $ruta = obtenerdirseg();
-    require_once $ruta . "conectaDB.php";
+    <main>
+        <?php
+        echo "<h2>Directores</h2>";
 
-    $dbname = "mydb";
-    $dbcon = conectaDB($dbname);
+        require_once "../funciones.php";
+        $ruta = obtenerdirseg();
+        require_once $ruta . "conectaDB.php";
 
-    $sql = "SELECT * FROM director";
-    $stmt = $dbcon->prepare($sql);
-    $stmt->execute();
+        $dbname = "mydb";
+        $dbcon = conectaDB($dbname);
 
-    if ($stmt->rowCount() > 0) {
-        echo "<table border='1'>
+        $sql = "SELECT * FROM director";
+        $stmt = $dbcon->prepare($sql);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            echo "<table border='1'>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
@@ -47,8 +50,8 @@
                         <th>ID Película</th>
                         <th>Imagen</th>
                     </tr>";
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<tr>
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>
                     <td>" . $row["iddirector"] . "</td>
                     <td>" . $row["nombre"] . "</td>
                     <td>" . $row["nacionalidad"] . "</td>
@@ -56,13 +59,14 @@
                     <td>" . $row["idpelicula"] . "</td>
                     <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen del director' width='100'></td>
                   </tr>";
+            }
+            echo "</table>";
+            $dbcon = null;
+        } else {
+            echo "Error: No se encontraron directores en la base de datos.";
         }
-        echo "</table>";
-        $dbcon = null;
-    } else {
-        echo "Error: No se encontraron directores en la base de datos.";
-    }
-    ?>
+        ?>
+    </main>
     <br><br>
     <footer>
         <li><a href="../index.php">Volver al menú</a></li>

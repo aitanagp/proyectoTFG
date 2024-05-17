@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar por película</title>
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 
 <body>
@@ -26,65 +26,70 @@
             <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
         </ul>
     </nav>
-    <br><br>
-    <form action="" method="post">
-        <label for="titulo_pelicula">Título de la película:</label>
-        <input type="text" name="titulo_pelicula" id="titulo_pelicula" required><br>
-        <button type="submit">Buscar</button>
-    </form>
+    <main>
 
-    <?php
-    require_once "../funciones.php";
-    $ruta = obtenerdirseg();
-    require_once $ruta . "conectaDB.php";
+        <?php
+        echo "<h2>Peliculas por actor</h2>";
+        ?>
+        <form action="" method="post">
+            <label for="titulo_pelicula">Título de la película:</label>
+            <input type="text" name="titulo_pelicula" id="titulo_pelicula" required><br>
+            <button type="submit">Buscar</button>
+        </form>
 
-    $dbname = "mydb";
-    $dbcon = conectaDB($dbname);
+        <?php
+        require_once "../funciones.php";
+        $ruta = obtenerdirseg();
+        require_once $ruta . "conectaDB.php";
 
-    if (isset($dbcon)) {
-        if (isset($_POST['titulo_pelicula'])) {
-            $titulo_pelicula = $_POST['titulo_pelicula'];
+        $dbname = "mydb";
+        $dbcon = conectaDB($dbname);
 
-            $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen, anyo_nacimiento as anyo
+        if (isset($dbcon)) {
+            if (isset($_POST['titulo_pelicula'])) {
+                $titulo_pelicula = $_POST['titulo_pelicula'];
+
+                $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen, anyo_nacimiento as anyo
                     FROM interprete i
                     JOIN actua a ON i.idinterprete = a.idinterprete
                     JOIN pelicula p ON a.idpelicula = p.idpelicula
                     WHERE p.titulo LIKE :titulo_pelicula";
 
-            $stmt = $dbcon->prepare($sql);
+                $stmt = $dbcon->prepare($sql);
 
-            // Agregar % al principio y al final del título de la película para hacer una búsqueda parcial
-            $titulo_pelicula_like = '%' . $titulo_pelicula . '%';
+                // Agregar % al principio y al final del título de la película para hacer una búsqueda parcial
+                $titulo_pelicula_like = '%' . $titulo_pelicula . '%';
 
-            $stmt->bindParam(':titulo_pelicula', $titulo_pelicula_like);
+                $stmt->bindParam(':titulo_pelicula', $titulo_pelicula_like);
 
-            $stmt->execute();
+                $stmt->execute();
 
-            if ($stmt->rowCount() > 0) {
-                echo "<table border='1'>
+                if ($stmt->rowCount() > 0) {
+                    echo "<table border='1'>
                         <tr>
                             <th>Actor</th>
                             <th>Nacimiento</th>
                             <th>Imagen</th>
                         </tr>";
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<tr>
                             <td>" . $row["nombre"] . "</td>
-                            <td>" . $row["anyo"]. "</td>
+                            <td>" . $row["anyo"] . "</td>
                             <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen actor' width='100'></td>
                           </tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "No se encontraron actores para la película con el título '$titulo_pelicula'.";
                 }
-                echo "</table>";
-            } else {
-                echo "No se encontraron actores para la película con el título '$titulo_pelicula'.";
-            }
 
-            $dbcon = null;
+                $dbcon = null;
+            }
+        } else {
+            echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
-    } else {
-        echo "Error: No se pudo establecer la conexión con la base de datos.";
-    }
-    ?>
+        ?>
+    </main>
     <br><br>
     <footer>
         <li><a href="../index.php">Volver al menú</a></li>

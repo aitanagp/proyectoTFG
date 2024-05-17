@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar por actor</title>
-    <link rel="stylesheet" type="text/css" href="../peliculas/style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 
 <body>
@@ -26,12 +26,15 @@
             <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
         </ul>
     </nav>
-    <br><br>
+    <main>
+        <?php echo "<h2>Nacionalidad actores</h2>"; ?>
+    </main>
     <form action="" method="post">
         <label for="nacionalidad">Nacionalidad de actor:</label>
         <input type="text" name="nacionalidad" id="nacionalidad" required>
         <button type="submit">Buscar</button>
     </form>
+    <br><br>
 
     <?php
     require_once "../funciones.php";
