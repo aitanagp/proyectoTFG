@@ -96,9 +96,7 @@
     </main>
     <br><br>
     <footer>
-        <ul>
-            <li><a href="../index.php">Volver al menú</a></li>
-        </ul>
+        <li><a href="../index.php">Volver al menú</a></li>
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>

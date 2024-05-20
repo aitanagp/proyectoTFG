@@ -12,7 +12,7 @@
     <header>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Intérpretes</h1>
+            <h1>Base de Datos de Películas</h1>
         </div>
     </header>
     <nav>
@@ -48,7 +48,6 @@ $stmt->execute();
 if ($stmt->rowCount() > 0) {
     echo "<table border='1'>
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Año de nacimiento</th>
                     <th>Nacionalidad</th>
@@ -56,7 +55,6 @@ if ($stmt->rowCount() > 0) {
                 </tr>";
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr>
-                    <td>" . $row["idinterprete"] . "</td>
                     <td>" . $row["nombre_inter"] . "</td>
                     <td>" . $row["anyo_nacimiento"] . "</td>
                     <td>" . $row["nacionalidad"] . "</td>

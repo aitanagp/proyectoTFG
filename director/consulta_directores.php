@@ -43,20 +43,16 @@
         if ($stmt->rowCount() > 0) {
             echo "<table border='1'>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Nacionalidad</th>
                         <th>Año de nacimiento</th>
-                        <th>ID Película</th>
                         <th>Imagen</th>
                     </tr>";
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>
-                    <td>" . $row["iddirector"] . "</td>
                     <td>" . $row["nombre"] . "</td>
                     <td>" . $row["nacionalidad"] . "</td>
                     <td>" . $row["anyo_nacimiento"] . "</td>
-                    <td>" . $row["idpelicula"] . "</td>
                     <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen del director' width='100'></td>
                   </tr>";
             }
