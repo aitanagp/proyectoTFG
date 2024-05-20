@@ -42,7 +42,7 @@
             <label for="idguion">Id guion:</label>
             <input type="number" id="idguion" name="idguion" required><br>
             <label for="idremake">Id remake:</label>
-            <input type="number" id="idremake" name="idremake" required><br>
+            <input type="number" id="idremake" name="idremake"><br>
             <label for="anyo">Año producción:</label>
             <input type="number" id="anyo" name="anyo" required><br>
             <label for="imagen">Imagen:</label>
@@ -73,22 +73,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen_contenido = file_get_contents($imagen_path); // Obtener el contenido binario de la imagen
 
     // Insertar los datos en la base de datos
-    $dbname = "peliculas";
+    $dbname = "mydb";
     $dbcon = conectaDB($dbname);
 
+
     if ($dbcon) {
-        $sql = "INSERT INTO pelicula (idpelicula, titulo, nacionalidad, iddirector, idguion, idremake, anyo_produccion, imagen)
-                VALUES (:idpelicula, :titulo, :nacionalidad, :iddirector, :idguion, :idremake, :anyo, :imagen)";
+        $sql = "INSERT INTO pelicula (idpelicula, titulo, nacionalidad, idguion, idremake, anyo_prod, imagen)
+                VALUES (:idpelicula, :titulo, :nacionalidad, :idguion, :idremake, :anyo, :imagen)";
         $stmt = $dbcon->prepare($sql);
         $stmt->bindParam(':idpelicula', $idpelicula);
         $stmt->bindParam(':titulo', $titulo);
         $stmt->bindParam(':nacionalidad', $nacionalidad);
-        $stmt->bindParam(':iddirector', $iddirector);
         $stmt->bindParam(':idguion', $idguion);
         $stmt->bindParam(':idremake', $idremake);
         $stmt->bindParam(':anyo', $anyo);
-        $stmt->bindParam(':imagen', $imagen_contenido, PDO::PARAM_LOB); // Establecer el parámetro como LOB (Binary Large Object)
+        $stmt->bindParam(':imagen', $imagen_contenido, PDO::PARAM_LOB);
+        $stmt->execute();
 
+        // Insertar datos en la tabla de relación dirige
+        $sql2 = "INSERT INTO dirige (iddirector, idpelicula) VALUES (:iddirector, :idpelicula)";
+        $stmt2 = $dbcon->prepare($sql2);
+        $stmt2->bindParam(':iddirector', $iddirector);
+        $stmt2->bindParam(':idpelicula', $idpelicula);
+        $stmt2->execute();
         if ($stmt->execute()) {
             echo "La película se ha insertado correctamente.";
         } else {

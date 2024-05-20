@@ -28,9 +28,9 @@
         </ul>
     </nav>
     <main>
-        <?php echo "<h2>Añadir Directores</h2>"; ?>
+        <?php echo "<h2>Directores</h2>"; ?>
         <form action="" method="post">
-            <select id="nombre_director" name="nombre_director" onclick="mostrarDirectores()" required>
+            <select id="nombre" name="nombre" onclick="mostrarDirectores()" required>
                 <?php
                 require_once "../funciones.php";
                 $ruta = obtenerdirseg();
@@ -67,42 +67,43 @@
         $dbcon = conectaDB($dbname);
 
         if (isset($dbcon)) {
-            if (isset($_POST['nombre_director'])) {
-                $nombre_director = $_POST['nombre_director'];
+            if (isset($_POST['nombre'])) {
+                $nombre = $_POST['nombre'];
 
                 $sql = "SELECT d.nombre, d.imagen as director_imagen, titulo, p.imagen as pelicula_imagen, anyo_prod 
-        FROM director d
-        JOIN pelicula p on p.iddirector=d.iddirector
-        WHERE d.nombre like :nombre_director";
+                        FROM dirige di
+                        JOIN pelicula p on p.idpelicula=di.idpelicula
+                        JOIN director d on d.iddirector=di.iddirector
+                        WHERE d.nombre like :nombre";
 
                 $stmt = $dbcon->prepare($sql);
-                $nombre_director_like = '%' . $nombre_director . '%';
+                $nombre_like = '%' . $nombre . '%';
 
-                $stmt->bindParam(':nombre_director', $nombre_director_like);
+                $stmt->bindParam(':nombre', $nombre_like);
 
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
                     echo "<table border='1'>
-            <tr>
-                <th>Director</th>
-                <th>Director Imagen</th>
-                <th>Título</th>
-                <th>Película Imagen</th>
-                <th>Año de Producción</th>
-            </tr>";
+                            <tr>
+                                <th>Director</th>
+                                <th>Director Imagen</th>
+                                <th>Título</th>
+                                <th>Película Imagen</th>
+                                <th>Año de Producción</th>
+                            </tr>";
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
-                <td>" . $row["nombre"] . "</td>
-                <td><img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Director Imagen' width='100'></td>
-                <td>" . $row["titulo"] . "</td>
-                <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Película Imagen' width='100'></td>
-                <td>" . $row["anyo_prod"] . "</td>
-              </tr>";
+                                <td>" . $row["nombre"] . "</td>
+                                <td><img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Director Imagen' width='100'></td>
+                                <td>" . $row["titulo"] . "</td>
+                                <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Película Imagen' width='100'></td>
+                                <td>" . $row["anyo_prod"] . "</td>
+                            </tr>";
                     }
                     echo "</table>";
                 } else {
-                    echo "No se encontraron películas con el ID de director '$nombre_director'.";
+                    echo "No se encontraron películas con el ID de director '$nombre'.";
                 }
 
                 $dbcon = null;

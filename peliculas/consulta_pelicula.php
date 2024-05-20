@@ -37,30 +37,36 @@
         $dbname = "mydb";
         $dbcon = conectaDB($dbname);
 
-        $sql = "SELECT titulo, anyo_prod, p.nacionalidad as peli_nacionalidad, nombre, p.imagen
-            FROM pelicula p
-            JOIN director d ON d.idpelicula=p.idpelicula";
+        $sql = "SELECT p.titulo, p.anyo_prod, p.nacionalidad AS peli_nacionalidad, d.nombre AS director_nombre, p.imagen AS pelicula_imagen, d.imagen AS director_imagen
+                FROM pelicula p
+                JOIN dirige di ON di.idpelicula = p.idpelicula
+                JOIN director d ON di.iddirector = d.iddirector";
+
         $stmt = $dbcon->prepare($sql);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
             echo "<h2>Peliculas</h2>";
             echo "<table border='1'>
-                <tr>
-                    <th>Título</th>
-                    <th>Año de producción</th>
-                    <th>Nacionalidad</th>
-                    <th>Director</th>
-                    <th>Imagen</th>
-                </tr>";
+                    <tr>
+                        <th>Título</th>
+                        <th>Año de producción</th>
+                        <th>Nacionalidad</th>
+                        <th>Imagen de Película</th>
+                        <th>Director</th>
+                        <th>Imagen de Director</th>
+                        
+                    </tr>";
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>
-                    <td>" . $row["titulo"] . "</td>
-                    <td>" . $row["anyo_prod"] . "</td>
-                    <td>" . $row["peli_nacionalidad"] . "</td>
-                    <td>" . $row["nombre"] . "</td>
-                    <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
-                  </tr>";
+                        <td>" . $row["titulo"] . "</td>
+                        <td>" . $row["anyo_prod"] . "</td>
+                        <td>" . $row["peli_nacionalidad"] . "</td>
+                        <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Movie Image' width='100'></td>
+                        <td>" . $row["director_nombre"] . "</td>
+                        <td><img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Director Image' width='100'></td>
+                        
+                    </tr>";
             }
             echo "</table>";
             $dbcon = null;

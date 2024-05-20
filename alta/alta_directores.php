@@ -71,7 +71,7 @@
                 // Guardar la ruta de la imagen en la base de datos
                 $imagen_path = $target_file;
 
-                $sql = "INSERT INTO pelicula (iddirector, nombre, nacionalidad, anyo_nacimiento, idpelicula, imagen)
+                $sql = "INSERT INTO director (iddirector, nombre, nacionalidad, anyo_nacimiento, idpelicula, imagen)
                     VALUES (:iddirector, :nombre, :nacionalidad, :anyo_nacimiento, :idpelicula, :imagen)";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->bindParam(':iddirector', $iddirector);
@@ -82,9 +82,9 @@
                 $stmt->bindParam(':imagen', $imagen_path);
 
                 if ($stmt->execute()) {
-                    echo "La película se ha insertado correctamente.";
+                    echo "El director se ha insertado correctamente.";
                 } else {
-                    echo "Error al insertar la película.";
+                    echo "Error al insertar el director.";
                 }
             } else {
                 echo "Error: No se pudo establecer la conexión con la base de datos.";

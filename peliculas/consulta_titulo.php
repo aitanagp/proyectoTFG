@@ -28,7 +28,7 @@
         </ul>
     </nav>
     <main>
-        <?php echo "<h2>Añadir Directores</h2>"; ?>
+        <?php echo "<h2>Buscar por titulo de película</h2>"; ?>
 
         <form method="post" action="">
             <label for="titulo_pelicula">Título Película:</label>
@@ -49,9 +49,10 @@
                 $titulo_pelicula = $_POST['titulo_pelicula'];
 
                 $sql = "SELECT titulo, anyo_prod, p.nacionalidad as peli_nacionalidad, nombre, p.imagen
-            FROM pelicula p
-            JOIN director d ON d.idpelicula=p.idpelicula 
-            WHERE titulo LIKE :titulo_pelicula";
+                        FROM pelicula p
+                        JOIN dirige di ON di.idpelicula=p.idpelicula
+                        JOIN director d ON d.iddirector=di.iddirector 
+                        WHERE titulo LIKE :titulo_pelicula";
 
                 $stmt = $dbcon->prepare($sql);
 
