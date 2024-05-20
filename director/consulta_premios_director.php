@@ -47,7 +47,8 @@
             $sql = "SELECT o.edicion AS edicion_premio, d.nombre AS nombre_director, d.imagen AS imagen_director, p.titulo AS titulo_pelicula, p.anyo_prod AS anyo_pelicula, p.nacionalidad AS nacionalidad_pelicula, p.imagen AS imagen_pelicula
                 FROM o_director o
                 JOIN director d ON o.iddirector = d.iddirector
-                JOIN pelicula p ON d.idpelicula = p.idpelicula
+                JOIN dirige di ON di.iddirector = d.iddirector
+                JOIN pelicula p ON di.idpelicula = p.idpelicula
                 WHERE d.nombre LIKE :nombre_director";
 
             $stmt = $dbcon->prepare($sql);

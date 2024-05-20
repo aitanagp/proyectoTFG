@@ -39,7 +39,8 @@
         // Consultar directores y sus películas
         $sql = "SELECT d.*, p.titulo AS pelicula
         FROM director d
-        LEFT JOIN pelicula p ON d.iddirector = p.iddirector
+        JOIN dirige di ON di.iddirector = d.iddirector
+        LEFT JOIN pelicula p ON di.idpelicula = p.idpelicula
         ORDER BY d.nombre, p.titulo";
         $stmt = $dbcon->prepare($sql);
         $stmt->execute();
