@@ -10,24 +10,10 @@
 
 <body>
     <header>
-        <div class="login">
-            <h3>Login</h3>
-            <form action="" method="post">
-                <label for="user">
-                    <i class="nombre usuario"></i>
-                </label>
-                <input type="text" name="user" placeholder="username" id="user" required>
-                <label for="pass">
-                    <i class="contraseña"></i>
-                </label>
-                <input type="password" name="pass" placeholder="password" id="pass" required>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-
         <img src="imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
+        </div>
         </div>
     </header>
 

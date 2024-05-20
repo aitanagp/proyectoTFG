@@ -15,16 +15,6 @@ body {
   color: var(--text-color-white); /* Establece el color del texto blanco */
 }
 
-.login {
-  width: 200px;
-  background-color: var(--background-color-dark-gray);
-}
-
-.login form {
-  display: flex;
-  flex-direction: column; /* Colocar los elementos en columna */
-  align-items: center;
-}
 /* Estilos para la sección principal */
 main {
   background-color: var(--background-color-black); /* Fondo negro */

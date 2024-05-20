@@ -17,6 +17,7 @@
     </header>
     <nav>
         <ul>
+            <li><a href="../premios/premios.php">Premios</a></li>
             <li><a href="../alta/alta_premios.php">Alta</a></li>
             <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
         </ul>
