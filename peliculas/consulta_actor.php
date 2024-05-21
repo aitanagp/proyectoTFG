@@ -28,7 +28,7 @@
         </ul>
     </nav>
     <main>
-        <?php echo "<h2>Añadir Directores</h2>"; ?>
+        <?php echo "<h2>Actores</h2>"; ?>
         <form action="" method="post">
             <label for="nombre_actor">Nombre de actor:</label>
             <input type="text" name="nombre_actor" id="nombre_actor" required><br>
@@ -47,11 +47,11 @@
             if (isset($_POST['nombre_actor'])) {
                 $nombre_actor = $_POST['nombre_actor'];
 
-                $sql = "SELECT p.titulo, p.imagen as pelicula_imagen, i.nombre_inter as nombre, p.anyo_prod as anyo_produccion, p.nacionalidad, i.imagen as actor_imagen
-                        FROM pelicula p
-                        JOIN actua a ON p.idpelicula = a.idpelicula
-                        JOIN interprete i ON a.idinterprete = i.idinterprete
-                        WHERE i.nombre_inter LIKE :nombre_actor";
+                $sql = "SELECT p.titulo, p.imagen AS pelicula_imagen, i.nombre_inter AS nombre, p.anyo_prod AS anyo_produccion, p.nacionalidad, i.imagen AS actor_imagen
+                FROM pelicula p
+                JOIN actua a ON p.idpelicula = a.idpelicula
+                JOIN interprete i ON a.idinterprete = i.idinterprete
+                WHERE i.nombre_inter LIKE :nombre_actor";
 
                 $stmt = $dbcon->prepare($sql);
 
@@ -63,26 +63,20 @@
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-                            <tr>
-                                <th>Actor</th>
-                                <th>Imagen</th>
-                                <th>Película</th>
-                                <th>Año de producción</th>
-                                <th>Nacionalidad</th>
-                                <th>Imagen</th>
-                            </tr>";
+                    echo "<div class='director-section'>";
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                                <td>" . $row["nombre"] . "</td>
-                                <td><img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Image' width='100'></td>
-                                <td>" . $row["titulo"] . "</td>
-                                <td>" . $row["anyo_produccion"] . "</td>
-                                <td>" . $row["nacionalidad"] . "</td>
-                                <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Image' width='100'></td>
-                              </tr>";
+                        echo "<div class='director-info'>";
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Imagen actor' class='actor-image'>";
+                        echo "<div class='director-details'>";
+                        echo "<h3>{$row['nombre']}</h3>";
+                        echo "<p><strong>Película:</strong> {$row['titulo']}</p>";
+                        echo "<p><strong>Año de producción:</strong> {$row['anyo_produccion']}</p>";
+                        echo "<p><strong>Nacionalidad:</strong> {$row['nacionalidad']}</p>";
+                        echo "</div>"; // Cierre de director-details
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Imagen película' class='pelicula-image'>";
+                        echo "</div>"; // Cierre de director-info
                     }
-                    echo "</table>";
+                    echo "</div>"; // Cierre de director-section
                 } else {
                     echo "No se encontró ninguna película con el nombre de actor '$nombre_actor'.";
                 }
@@ -93,6 +87,7 @@
             echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
         ?>
+        
     </main>
     <br><br>
     <footer>

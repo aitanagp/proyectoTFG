@@ -36,12 +36,12 @@
         $dbname = "mydb";
         $dbcon = conectaDB($dbname);
 
-        // Consultar directores y sus películas
-        $sql = "SELECT d.*, p.titulo AS pelicula
-        FROM director d
-        JOIN dirige di ON di.iddirector = d.iddirector
-        LEFT JOIN pelicula p ON di.idpelicula = p.idpelicula
-        ORDER BY d.nombre, p.titulo";
+        // Consulta para obtener los directores y sus películas
+        $sql = "SELECT d.*, p.titulo AS pelicula, p.imagen AS pelicula_imagen
+                FROM director d
+                JOIN dirige di ON di.iddirector = d.iddirector
+                LEFT JOIN pelicula p ON di.idpelicula = p.idpelicula
+                ORDER BY d.nombre, p.titulo";
         $stmt = $dbcon->prepare($sql);
         $stmt->execute();
 
@@ -59,36 +59,42 @@
                     ];
                 }
                 if ($row['pelicula']) {
-                    $directores[$iddirector]['peliculas'][] = $row['pelicula'];
+                    $directores[$iddirector]['peliculas'][] = [
+                        'titulo' => $row['pelicula'],
+                        'imagen' => $row['pelicula_imagen']
+                    ];
                 }
             }
 
+            // Mostrar la información de cada director
             foreach ($directores as $director) {
-                echo "<table border='1'>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Nacionalidad</th>
-                    <th>Año de nacimiento</th>
-                    <th>Imagen</th>
-                    <th>Películas</th>
-                </tr>";
-                echo "<tr>
-                <td>{$director['nombre']}</td>
-                <td>{$director['nacionalidad']}</td>
-                <td>{$director['anyo_nacimiento']}</td>
-                <td><img src='data:image/jpeg;base64," . base64_encode($director['imagen']) . "' alt='Imagen del director' width='100'></td>
-                <td>";
+                echo "<div class='director-section'>";
+                echo "<div class='director-info'>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($director['imagen']) . "' alt='Imagen del director'>";
+                echo "<div class='director-details'>";
+                echo "<h2>{$director['nombre']}</h2>";
+                echo "<p><strong>Nacionalidad:</strong> {$director['nacionalidad']}</p>";
+                echo "<p><strong>Año de nacimiento:</strong> {$director['anyo_nacimiento']}</p>";
+                echo "</div>";
+                echo "</div>";
+                echo "<div>";
+                echo "<h3>Películas:</h3>";
                 if (!empty($director['peliculas'])) {
-                    echo "<ul>";
+                    echo "<ul class='peliculas-list'>";
                     foreach ($director['peliculas'] as $pelicula) {
-                        echo "<li>{$pelicula}</li>";
+                        echo "<li>";
+                        echo "<strong>{$pelicula['titulo']}</strong><br>";
+                        if ($pelicula['imagen']) {
+                            echo "<img src='data:image/jpeg;base64," . base64_encode($pelicula['imagen']) . "' alt='Imagen de la película'><br>";
+                        }
+                        echo "</li>";
                     }
                     echo "</ul>";
                 } else {
-                    echo "No tiene películas registradas.";
+                    echo "<p>No tiene películas registradas.</p>";
                 }
-                echo "</td></tr>";
-                echo "</table><br>";
+                echo "</div>";
+                echo "</div>";
             }
 
             $dbcon = null;
@@ -96,7 +102,6 @@
             echo "Error: No se encontraron directores en la base de datos.";
         }
         ?>
-
     </main>
     <br><br>
     <footer>

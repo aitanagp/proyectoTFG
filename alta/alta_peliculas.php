@@ -41,6 +41,8 @@
             <input type="number" id="iddirector" name="iddirector" required><br>
             <label for="idguion">Id guion:</label>
             <input type="number" id="idguion" name="idguion" required><br>
+            <label for="text">Nombre Guión:</label>
+            <input type="text" id="nombreguion" name="nombreguion"><br>
             <label for="idremake">Id remake:</label>
             <input type="number" id="idremake" name="idremake"><br>
             <label for="anyo">Año producción:</label>
@@ -96,6 +98,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt2->bindParam(':iddirector', $iddirector);
         $stmt2->bindParam(':idpelicula', $idpelicula);
         $stmt2->execute();
+
+
+        $sql3 = "INSERT INTO guion (idguion, nombre_guion, idpelicula) 
+                VALUES (:idguion, :nombreguion, :idpelicula)";
+        $stmt3 = $dbcon->prepare($sql3);
+        $stmt3->bindParam(':idguion', $idguion);
+        $stmt3->bindParam(':nombreguion', $nombreguion);
+        $stmt3->bindParam(':idpelicula', $idpelicula);
+        $stmt3->execute(); 
         if ($stmt->execute()) {
             echo "La película se ha insertado correctamente.";
         } else {

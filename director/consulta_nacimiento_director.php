@@ -57,22 +57,19 @@
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-                    <tr>
-                        <th>Actor</th>
-                        <th>Año nacimiento</th>
-                        <th>Imagen</th>
-                    </tr>";
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                        <td>" . $row["nombre"] . "</td>
-                        <td>" . $row["anyo_nacimiento"] . "</td>
-                        <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
-                      </tr>";
+                        echo "<div class ='actor-section'>";
+                        echo "<div class='actor-info'>";
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'>";
+                        echo "<div class='actor-details'>";
+                        echo "<h3>{$row['nombre']}</h3>";
+                        echo "<p><strong>Año de nacimiento: </strong>{$row['anyo_nacimiento']}</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
                     }
-                    echo "</table>";
                 } else {
-                    echo "No se encontró ninguna película con el año de nacimiento";
+                    echo "No se encontró ningun director con el año de nacimiento";
                 }
                 $dbcon = null;
             }

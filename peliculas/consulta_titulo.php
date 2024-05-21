@@ -28,7 +28,7 @@
         </ul>
     </nav>
     <main>
-        <?php echo "<h2>Buscar por titulo de película</h2>"; ?>
+        <?php echo "<h2>Buscar por título de película</h2>"; ?>
 
         <form method="post" action="">
             <label for="titulo_pelicula">Título Película:</label>
@@ -49,10 +49,10 @@
                 $titulo_pelicula = $_POST['titulo_pelicula'];
 
                 $sql = "SELECT titulo, anyo_prod, p.nacionalidad as peli_nacionalidad, nombre, p.imagen
-                        FROM pelicula p
-                        JOIN dirige di ON di.idpelicula=p.idpelicula
-                        JOIN director d ON d.iddirector=di.iddirector 
-                        WHERE titulo LIKE :titulo_pelicula";
+                FROM pelicula p
+                JOIN dirige di ON di.idpelicula = p.idpelicula
+                JOIN director d ON d.iddirector = di.iddirector
+                WHERE titulo LIKE :titulo_pelicula";
 
                 $stmt = $dbcon->prepare($sql);
 
@@ -61,24 +61,19 @@
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-                        <tr>
-                            <th>Título</th>
-                            <th>Año de producción</th>
-                            <th>Nacionalidad</th>
-                            <th>Director</th>
-                            <th>Imagen</th>
-                        </tr>";
+                    echo "<div class='director-section'>";
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                            <td>" . $row["titulo"] . "</td>
-                            <td>" . $row["anyo_prod"] . "</td>
-                            <td>" . $row["peli_nacionalidad"] . "</td>
-                            <td>" . $row["nombre"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
-                          </tr>";
+                        echo "<div class='director-info'>";
+                        echo "<div class='director-details'>";
+                        echo "<h3>{$row['titulo']}</h3>";
+                        echo "<p><strong>Año de producción:</strong> {$row['anyo_prod']}</p>";
+                        echo "<p><strong>Nacionalidad:</strong> {$row['peli_nacionalidad']}</p>";
+                        echo "<p><strong>Director:</strong> {$row['nombre']}</p>";
+                        echo "</div>"; // Cierre de director-details
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' class='pelicula-image'>";
+                        echo "</div>"; // Cierre de director-info
                     }
-                    echo "</table>";
+                    echo "</div>"; // Cierre de director-section
                 } else {
                     echo "No se encontraron películas con el título '$titulo_pelicula'.";
                 }
@@ -91,6 +86,7 @@
             echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
         ?>
+
     </main>
     <br><br>
     <footer>

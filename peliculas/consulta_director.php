@@ -59,59 +59,55 @@
         </form>
         <br><br>
         <?php
-        require_once "../funciones.php";
-        $ruta = obtenerdirseg();
-        require_once $ruta . "conectaDB.php";
+require_once "../funciones.php";
+$ruta = obtenerdirseg();
+require_once $ruta . "conectaDB.php";
 
-        $dbname = "mydb";
-        $dbcon = conectaDB($dbname);
+$dbname = "mydb";
+$dbcon = conectaDB($dbname);
 
-        if (isset($dbcon)) {
-            if (isset($_POST['nombre'])) {
-                $nombre = $_POST['nombre'];
+if (isset($dbcon)) {
+    if (isset($_POST['nombre'])) {
+        $nombre = $_POST['nombre'];
 
-                $sql = "SELECT d.nombre, d.imagen as director_imagen, titulo, p.imagen as pelicula_imagen, anyo_prod 
-                        FROM dirige di
-                        JOIN pelicula p on p.idpelicula=di.idpelicula
-                        JOIN director d on d.iddirector=di.iddirector
-                        WHERE d.nombre like :nombre";
+        $sql = "SELECT d.nombre, d.imagen as director_imagen, titulo, p.imagen as pelicula_imagen, anyo_prod 
+                FROM dirige di
+                JOIN pelicula p ON p.idpelicula=di.idpelicula
+                JOIN director d ON d.iddirector=di.iddirector
+                WHERE d.nombre LIKE :nombre";
 
-                $stmt = $dbcon->prepare($sql);
-                $nombre_like = '%' . $nombre . '%';
+        $stmt = $dbcon->prepare($sql);
+        $nombre_like = '%' . $nombre . '%';
 
-                $stmt->bindParam(':nombre', $nombre_like);
+        $stmt->bindParam(':nombre', $nombre_like);
 
-                $stmt->execute();
+        $stmt->execute();
 
-                if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-                            <tr>
-                                <th>Director</th>
-                                <th>Director Imagen</th>
-                                <th>Título</th>
-                                <th>Película Imagen</th>
-                                <th>Año de Producción</th>
-                            </tr>";
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                                <td>" . $row["nombre"] . "</td>
-                                <td><img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Director Imagen' width='100'></td>
-                                <td>" . $row["titulo"] . "</td>
-                                <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Película Imagen' width='100'></td>
-                                <td>" . $row["anyo_prod"] . "</td>
-                            </tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "No se encontraron películas con el ID de director '$nombre'.";
-                }
-
-                $dbcon = null;
+        if ($stmt->rowCount() > 0) {
+            echo "<div class='director-section'>";
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='director-info'>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Director Imagen' class='actor-image'>";
+                echo "<div class='director-details'>";
+                echo "<h3>{$row['nombre']}</h3>";
+                echo "<p><strong>Título:</strong> {$row['titulo']}</p>";
+                echo "<p><strong>Año de producción:</strong> {$row['anyo_prod']}</p>";
+                echo "</div>"; // Cierre de director-details
+                echo "<img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Película Imagen' class='pelicula-image'>";
+                echo "</div>"; // Cierre de director-info
             }
+            echo "</div>"; // Cierre de director-section
         } else {
-            echo "Error: No se pudo establecer la conexión con la base de datos.";
+            echo "No se encontraron películas con el nombre de director '$nombre'.";
         }
-        ?>
+
+        $dbcon = null;
+    }
+} else {
+    echo "Error: No se pudo establecer la conexión con la base de datos.";
+}
+?>
+
     </main>
     <br><br>
     <footer>

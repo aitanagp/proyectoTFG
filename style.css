@@ -128,3 +128,72 @@ footer li a {
 footer li a:hover {
   color: var(--text-color-white); /* Texto blanco al pasar el mouse */
 }
+
+/* Estilos específicos para la página de directores y películas */
+.director-section {
+  border-bottom: 1px solid #000;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.director-info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.director-info img {
+  margin-right: 20px;
+  width: 150px;
+}
+
+.director-details {
+  flex-grow: 1;
+}
+
+.peliculas-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.peliculas-list li {
+  margin: 10px;
+  width: 200px;
+}
+
+.peliculas-list img {
+  width: 100px;
+}
+
+.actor-image,
+.pelicula-image {
+  width: 150px;
+}
+/* Estilos específicos para la página de intérpretes */
+.actor-section {
+  border-bottom: 1px solid #000;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.actor-info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.actor-info img {
+  margin-right: 20px;
+  width: 150px;
+}
+
+.actor-details {
+  flex-grow: 1;
+}
+

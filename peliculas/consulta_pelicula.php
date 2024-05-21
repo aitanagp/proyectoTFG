@@ -28,7 +28,6 @@
         </ul>
     </nav>
     <main>
-
         <?php
         require_once "../funciones.php";
         $ruta = obtenerdirseg();
@@ -40,40 +39,65 @@
         $sql = "SELECT p.titulo, p.anyo_prod, p.nacionalidad AS peli_nacionalidad, d.nombre AS director_nombre, p.imagen AS pelicula_imagen, d.imagen AS director_imagen
                 FROM pelicula p
                 JOIN dirige di ON di.idpelicula = p.idpelicula
-                JOIN director d ON di.iddirector = d.iddirector";
+                JOIN director d ON di.iddirector = d.iddirector
+                ORDER BY d.nombre, p.titulo";
 
         $stmt = $dbcon->prepare($sql);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo "<h2>Peliculas</h2>";
-            echo "<table border='1'>
-                    <tr>
-                        <th>Título</th>
-                        <th>Año de producción</th>
-                        <th>Nacionalidad</th>
-                        <th>Imagen de Película</th>
-                        <th>Director</th>
-                        <th>Imagen de Director</th>
-                        
-                    </tr>";
+            $directores = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>
-                        <td>" . $row["titulo"] . "</td>
-                        <td>" . $row["anyo_prod"] . "</td>
-                        <td>" . $row["peli_nacionalidad"] . "</td>
-                        <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Movie Image' width='100'></td>
-                        <td>" . $row["director_nombre"] . "</td>
-                        <td><img src='data:image/jpeg;base64," . base64_encode($row["director_imagen"]) . "' alt='Director Image' width='100'></td>
-                        
-                    </tr>";
+                $directorNombre = $row['director_nombre'];
+                if (!isset($directores[$directorNombre])) {
+                    $directores[$directorNombre] = [
+                        'nombre' => $directorNombre,
+                        'imagen' => $row['director_imagen'],
+                        'peliculas' => []
+                    ];
+                }
+                $directores[$directorNombre]['peliculas'][] = [
+                    'titulo' => $row['titulo'],
+                    'anyo_prod' => $row['anyo_prod'],
+                    'nacionalidad' => $row['peli_nacionalidad'],
+                    'imagen' => $row['pelicula_imagen']
+                ];
             }
-            echo "</table>";
+
+            foreach ($directores as $director) {
+                echo "<div class='director-section'>";
+                echo "<div class='director-info'>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($director['imagen']) . "' alt='Imagen del director'>";
+                echo "<div class='director-details'>";
+                echo "<h2>{$director['nombre']}</h2>";
+                echo "</div>";
+                echo "</div>";
+                echo "<div>";
+                echo "<h3>Películas:</h3>";
+                if (!empty($director['peliculas'])) {
+                    echo "<ul class='peliculas-list'>";
+                    foreach ($director['peliculas'] as $pelicula) {
+                        echo "<li>";
+                        echo "<strong>{$pelicula['titulo']}</strong><br>";
+                        echo "<span><strong>Año:</strong> {$pelicula['anyo_prod']}</span><br>";
+                        echo "<span><strong>Nacionalidad:</strong> {$pelicula['nacionalidad']}</span><br>";
+                        if ($pelicula['imagen']) {
+                            echo "<img src='data:image/jpeg;base64," . base64_encode($pelicula['imagen']) . "' alt='Imagen de la película'><br>";
+                        }
+                        echo "</li>";
+                    }
+                    echo "</ul>";
+                } else {
+                    echo "<p>No tiene películas registradas.</p>";
+                }
+                echo "</div>";
+                echo "</div>";
+            }
+
             $dbcon = null;
         } else {
-            echo "Error: No se pudo establecer la conexión con la base de datos.";
+            echo "Error: No se encontraron directores en la base de datos.";
         }
-
         ?>
     </main>
     <br><br>
@@ -82,3 +106,5 @@
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
+
+</html>

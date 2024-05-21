@@ -50,14 +50,13 @@
                 $titulo_pelicula = $_POST['titulo_pelicula'];
 
                 $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen, anyo_nacimiento as anyo
-                    FROM interprete i
-                    JOIN actua a ON i.idinterprete = a.idinterprete
-                    JOIN pelicula p ON a.idpelicula = p.idpelicula
-                    WHERE p.titulo LIKE :titulo_pelicula";
+            FROM interprete i
+            JOIN actua a ON i.idinterprete = a.idinterprete
+            JOIN pelicula p ON a.idpelicula = p.idpelicula
+            WHERE p.titulo LIKE :titulo_pelicula";
 
                 $stmt = $dbcon->prepare($sql);
 
-                // Agregar % al principio y al final del título de la película para hacer una búsqueda parcial
                 $titulo_pelicula_like = '%' . $titulo_pelicula . '%';
 
                 $stmt->bindParam(':titulo_pelicula', $titulo_pelicula_like);
@@ -65,20 +64,17 @@
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-                        <tr>
-                            <th>Actor</th>
-                            <th>Nacimiento</th>
-                            <th>Imagen</th>
-                        </tr>";
+                    echo "<div class='actor-results-section'>";
+                    echo "<table class='actor-results-table'>";
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                            <td>" . $row["nombre"] . "</td>
-                            <td>" . $row["anyo"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen actor' width='100'></td>
-                          </tr>";
+                        echo "<tr class='actor-section'>";
+                        echo "<td class='actor-name'>" . $row["nombre"] . "</td>";
+                        echo "<td class='actor-birth'>" . $row["anyo"] . "</td>";
+                        echo "<td class='actor-image'><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen actor' width='100'></td>";
+                        echo "</tr>";
                     }
                     echo "</table>";
+                    echo "</div>";
                 } else {
                     echo "No se encontraron actores para la película con el título '$titulo_pelicula'.";
                 }
@@ -89,6 +85,7 @@
             echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
         ?>
+
     </main>
     <br><br>
     <footer>

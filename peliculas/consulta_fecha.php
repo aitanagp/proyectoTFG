@@ -28,7 +28,7 @@
         </ul>
     </nav>
     <main>
-        <?php echo "<h2>Añadir Directores</h2>"; ?>
+        <?php echo "<h2>Año estreno</h2>"; ?>
         <form action="" method="post">
             <label for="anyo">Buscar por año de producción:</label>
             <input type="number" name="anyo" id="anyo" required><br>
@@ -43,40 +43,39 @@
 
         $dbname = "mydb";
         $dbcon = conectaDB($dbname);
+
         if (isset($dbcon)) {
             if (isset($_POST['anyo'])) {
                 $anyo = $_POST['anyo'];
-                $sql = "SELECT titulo, anyo_prod, nacionalidad, imagen FROM pelicula WHERE anyo_prod like :anyo";
+                $sql = "SELECT titulo, anyo_prod, nacionalidad, imagen FROM pelicula WHERE anyo_prod LIKE :anyo";
                 $stmt = $dbcon->prepare($sql);
-                $stmt->bindParam(':anyo', $anyo);
+                $anyo_like = '%' . $anyo . '%';
+                $stmt->bindParam(':anyo', $anyo_like);
 
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-            <tr>
-                <th>Título</th>
-                <th>Año de producción</th>
-                <th>Nacionalidad</th>
-                <th>Imagen</th>
-            </tr>";
-
+                    echo "<div class='director-section'>";
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                    <td>" . $row["titulo"] . "</td>
-                    <td>" . $row["anyo_prod"] . "</td>
-                    <td>" . $row["nacionalidad"] . "</td>
-                    <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen del película' width='100'></td>
-                </tr>";
+                        echo "<div class='director-info'>";
+                        echo "<div class='director-details'>";
+                        echo "<h3>{$row['titulo']}</h3>";
+                        echo "<p><strong>Año de producción:</strong> {$row['anyo_prod']}</p>";
+                        echo "<p><strong>Nacionalidad:</strong> {$row['nacionalidad']}</p>";
+                        echo "</div>"; // Cierre de director-details
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen del película' class='pelicula-image'>";
+                        echo "</div>"; // Cierre de director-info
                     }
-                    echo "</table>";
+                    echo "</div>"; // Cierre de director-section
                 } else {
                     echo "No se encontraron películas para el año '$anyo'.";
                 }
-
             }
+        } else {
+            echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
         ?>
+
     </main>
     <br><br>
     <footer>
