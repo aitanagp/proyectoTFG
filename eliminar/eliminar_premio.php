@@ -7,7 +7,7 @@ $dbname = "mydb";
 $dbcon = conectaDB($dbname);
 
 if (isset($dbcon)) {
-    if (isset($_GET['id']) && isset($_GET['tipo'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['tipo'])) {
         $id = $_GET['id'];
         $tipo = $_GET['tipo'];
 
@@ -49,6 +49,7 @@ if (isset($dbcon)) {
         }
     } else {
         echo "Falta el ID o el tipo de premio.";
+        header("refresh:2;url=elimina_premios.php");
     }
 
     $dbcon = null;

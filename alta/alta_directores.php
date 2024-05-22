@@ -37,8 +37,6 @@
             <input type="text" id="nacionalidad" name="nacionalidad" required><br>
             <label for="anyo_nacimiento">Año de nacimiento:</label>
             <input type="number" id="anyo_nacimiento" name="anyo_nacimiento" required><br>
-            <label for="idpelicula">Id película:</label>
-            <input type="number" id="idpelicula" name="idpelicula" required><br>
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen" accept="image/*"><br>
             <input type="submit" value="Agregar Película">
@@ -71,14 +69,13 @@
                 // Guardar la ruta de la imagen en la base de datos
                 $imagen_path = $target_file;
 
-                $sql = "INSERT INTO director (iddirector, nombre, nacionalidad, anyo_nacimiento, idpelicula, imagen)
-                    VALUES (:iddirector, :nombre, :nacionalidad, :anyo_nacimiento, :idpelicula, :imagen)";
+                $sql = "INSERT INTO director (iddirector, nombre, nacionalidad, anyo_nacimiento, imagen)
+                    VALUES (:iddirector, :nombre, :nacionalidad, :anyo_nacimiento, :imagen)";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->bindParam(':iddirector', $iddirector);
                 $stmt->bindParam(':nombre', $nombre);
                 $stmt->bindParam(':nacionalidad', $nacionalidad);
                 $stmt->bindParam(':anyo_nacimiento', $anyo_nacimiento);
-                $stmt->bindParam(':idpelicula', $_POST['idpelicula']);
                 $stmt->bindParam(':imagen', $imagen_path);
 
                 if ($stmt->execute()) {

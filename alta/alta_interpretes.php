@@ -30,13 +30,13 @@
         <?php echo "<h2>Añadir intérpretes</h2>"; ?>
 
         <form action="" method="post" enctype="multipart/form-data">
-            <label for="idinterprete">Id película:</label>
+            <label for="idinterprete">Id intérprete:</label>
             <input type="number" id="idinterprete" name="idinterprete" required><br>
-            <label for="nombre_inter">Título:</label>
+            <label for="nombre_inter">Nombre:</label>
             <input type="text" id="nombre_inter" name="nombre_inter" required><br>
             <label for="nacionalidad">Nacionalidad:</label>
             <input type="text" id="nacionalidad" name="nacionalidad" required><br>
-            <label for="anyo_nacimiento">Año producción:</label>
+            <label for="anyo_nacimiento">Año nacimiento:</label>
             <input type="number" id="anyo_nacimiento" name="anyo_nacimiento" required><br>
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen" accept="image/*"><br>
@@ -70,8 +70,8 @@
                 // Guardar la ruta de la imagen en la base de datos
                 $imagen_path = $target_file;
 
-                $sql = "INSERT INTO pelicula (idinterprete, nombre_inter, nacionalidad, iddirector, idguion, idremake, anyo_nacimiento_produccion, imagen)
-                VALUES (:idinterprete, :nombre_inter, :nacionalidad, :iddirector, :idguion, :idremake, :anyo_nacimiento, :imagen)";
+                $sql = "INSERT INTO interprete (idinterprete, nombre_inter, nacionalidad, anyo_nacimiento, imagen)
+                VALUES (:idinterprete, :nombre_inter, :nacionalidad, :anyo_nacimiento, :imagen)";
                 $stmt = $dbcon->prepare($sql);
                 $stmt->bindParam(':idinterprete', $idinterprete);
                 $stmt->bindParam(':nombre_inter', $nombre_inter);
@@ -80,9 +80,9 @@
                 $stmt->bindParam(':imagen', $imagen_path);
 
                 if ($stmt->execute()) {
-                    echo "La película se ha insertado correctamente.";
+                    echo "El intérprete se ha insertado correctamente.";
                 } else {
-                    echo "Error al insertar la película.";
+                    echo "Error al insertar el intérprete.";
                 }
             } else {
                 echo "Error: No se pudo establecer la conexión con la base de datos.";

@@ -69,11 +69,11 @@
                         echo "<p><strong>Año de producción:</strong> {$row['anyo_prod']}</p>";
                         echo "<p><strong>Nacionalidad:</strong> {$row['peli_nacionalidad']}</p>";
                         echo "<p><strong>Director:</strong> {$row['nombre']}</p>";
-                        echo "</div>"; // Cierre de director-details
+                        echo "</div>";
                         echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' class='pelicula-image'>";
-                        echo "</div>"; // Cierre de director-info
+                        echo "</div>";
                     }
-                    echo "</div>"; // Cierre de director-section
+                    echo "</div>";
                 } else {
                     echo "No se encontraron películas con el título '$titulo_pelicula'.";
                 }

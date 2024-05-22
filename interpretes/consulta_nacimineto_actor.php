@@ -27,7 +27,7 @@
     </ul>
   </nav>
   <main>
-    <h2>Consulta de Películas por Año de Nacimiento</h2>
+    <h2>Consulta de intérpretes por año de nacimiento</h2>
     <form action="" method="post">
       <label for="anyo">Buscar por año de nacimiento:</label>
       <input type="number" name="anyo" id="anyo" required><br>

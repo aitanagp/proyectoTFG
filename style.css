@@ -17,10 +17,35 @@ body {
 
 /* Estilos para la sección principal */
 main {
-  background-color: var(--background-color-black); /* Fondo negro */
-  color: var(--text-color-white); /* Texto blanco */
-  padding: 20px; /* Relleno para mejorar la legibilidad */
+  padding: 20px;
+  background-color: var(--background-color-dark-gray);
+  max-width: 800px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="submit"] {
+  background-color: var(--text-color-white);
+  color: var(--text-color-white);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form input[type="submit"]:hover {
+  background-color: #555;
+}
+
 
 /* Estilos para el encabezado */
 header {
@@ -197,3 +222,85 @@ footer li a:hover {
   flex-grow: 1;
 }
 
+/* Estilos específicos para la página de premios */
+.container {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.awards-section {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.awards-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.award-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--background-color-dark-gray);
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.award-image {
+  width: 100px;
+  height: auto;
+}
+
+.award-details {
+  padding: 10px;
+  flex: 1;
+  border-radius: 8px;
+}
+
+.award-details p {
+  margin: 5px 0;
+}
+
+.no-awards {
+  color: #888;
+  text-align: center;
+}
+
+.actor-card-content {
+  display: flex;
+  align-items: center;
+}
+
+.actor-info {
+  margin-left: 10px;
+  flex: 1;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.movie-info img {
+  width: 100px;
+  height: auto;
+}
+
+.movie-info p {
+  text-align: center;
+  margin-top: 5px;
+}

@@ -150,62 +150,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
     </nav>
 
     <main>
-    <?php echo "<h2>Añadir Premios</h2>"; ?>
-    
-    <form action="" method="post">
-        <h2>Mejor Película</h2>
-        <select id="titulo" name="titulo">
-            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
-        </select>
-        <label for="edicion_pelicula">Edición:</label>
-        <input type="number" id="edicion_pelicula" name="edicion_pelicula">
-        <input type="submit" name="submit_pelicula" value="Agrega Premio">
-    </form>
+        <?php echo "<h2>Añadir Premios</h2>"; ?>
 
-    <form action="" method="post">
-        <h2>Mejor Director</h2>
-        <select id="nombre_director" name="nombre_director">
-            <?php echo obtenerOpciones('director', 'nombre'); ?>
-        </select>
-        <select id="titulo_director" name="titulo_director">
-            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
-        </select>
-        <label for="edicion_director">Edición:</label>
-        <input type="text" id="edicion_director" name="edicion_director">
-        <input type="submit" name="submit_director" value="Agrega Premio">
-    </form>
+        <form action="" method="post">
+            <h2>Mejor Película</h2>
+            <select id="titulo" name="titulo">
+                <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            </select>
+            <label for="edicion_pelicula">Edición:</label>
+            <input type="number" id="edicion_pelicula" name="edicion_pelicula">
+            <input type="submit" name="submit_pelicula" value="Agrega Premio">
+        </form>
 
-    <form action="" method="post">
-        <h2>Mejor Guión</h2>
-        <select id="nombre_guion" name="nombre_guion">
-            <?php echo obtenerOpciones('guion', 'nombre_guion'); ?>
-        </select>
-        <select id="titulo_guion" name="titulo_guion">
-            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
-        </select>
-        <label for="edicion_guion">Edición:</label>
-        <input type="text" id="edicion_guion" name="edicion_guion">
-        <input type="submit" name="submit_guion" value="Agrega Premio">
-    </form>
+        <form action="" method="post">
+            <h2>Mejor Director</h2>
+            <select id="nombre_director" name="nombre_director">
+                <?php echo obtenerOpciones('director', 'nombre'); ?>
+            </select>
+            <select id="titulo_director" name="titulo_director">
+                <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            </select>
+            <label for="edicion_director">Edición:</label>
+            <input type="text" id="edicion_director" name="edicion_director">
+            <input type="submit" name="submit_director" value="Agrega Premio">
+        </form>
 
-    <form action="" method="post">
-        <h2>Mejor Intérprete</h2>
-        <select id="nombre_interprete" name="nombre_interprete">
-            <?php echo obtenerOpciones('interprete', 'nombre_inter'); ?>
-        </select>
-        <select id="titulo_interprete" name="titulo_interprete">
-            <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
-        </select>
-        <label for="edicion_interprete">Edición:</label>
-        <input type="text" id="edicion_interprete" name="edicion_interprete">
-        <input type="submit" name="submit_interprete" value="Agrega Premio">
-    </form>
+        <form action="" method="post">
+            <h2>Mejor Guión</h2>
+            <select id="nombre_guion" name="nombre_guion">
+                <?php echo obtenerOpciones('guion', 'nombre_guion'); ?>
+            </select>
+            <select id="titulo_guion" name="titulo_guion">
+                <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            </select>
+            <label for="edicion_guion">Edición:</label>
+            <input type="text" id="edicion_guion" name="edicion_guion">
+            <input type="submit" name="submit_guion" value="Agrega Premio">
+        </form>
 
+        <form action="" method="post">
+            <h2>Mejor Intérprete</h2>
+            <select id="nombre_interprete" name="nombre_interprete">
+                <?php echo obtenerOpciones('interprete', 'nombre_inter'); ?>
+            </select>
+            <select id="titulo_interprete" name="titulo_interprete">
+                <?php echo obtenerOpciones('pelicula', 'titulo'); ?>
+            </select>
+            <label for="edicion_interprete">Edición:</label>
+            <input type="text" id="edicion_interprete" name="edicion_interprete">
+            <input type="submit" name="submit_interprete" value="Agrega Premio">
+        </form>
+    </main>
     <br><br>
     <footer>
         <li><a href="../index.php">Volver al menú</a></li>
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
-</main>
+
 </html>

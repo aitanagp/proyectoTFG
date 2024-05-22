@@ -62,11 +62,11 @@
                         echo "<h3>{$row['titulo']}</h3>";
                         echo "<p><strong>Año de producción:</strong> {$row['anyo_prod']}</p>";
                         echo "<p><strong>Nacionalidad:</strong> {$row['nacionalidad']}</p>";
-                        echo "</div>"; // Cierre de director-details
+                        echo "</div>";
                         echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen del película' class='pelicula-image'>";
-                        echo "</div>"; // Cierre de director-info
+                        echo "</div>";
                     }
-                    echo "</div>"; // Cierre de director-section
+                    echo "</div>";
                 } else {
                     echo "No se encontraron películas para el año '$anyo'.";
                 }

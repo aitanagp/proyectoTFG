@@ -48,49 +48,49 @@
 
                 // Consulta para obtener los premios ganados por el actor y los detalles de la película
                 $sql = "SELECT o.edicion, i.nombre_inter AS actor, i.imagen AS actor_imagen, p.titulo AS pelicula, p.imagen AS pelicula_imagen
-                    FROM o_interprete o
-                    JOIN interprete i ON o.idinterprete = i.idinterprete
-                    JOIN actua a ON i.idinterprete = a.idinterprete
-                    JOIN pelicula p ON a.idpelicula = p.idpelicula
-                    WHERE i.nombre_inter LIKE :nombre_actor";
+                        FROM o_interprete o
+                        JOIN interprete i ON o.idinterprete = i.idinterprete
+                        JOIN actua a ON i.idinterprete = a.idinterprete
+                        JOIN pelicula p ON a.idpelicula = p.idpelicula
+                        AND p.idpelicula=o.idpelicula
+                        WHERE i.nombre_inter LIKE :nombre_actor";
+
 
                 $stmt = $dbcon->prepare($sql);
                 $nombre_actor_like = '%' . $nombre_actor . '%';
                 $stmt->bindParam(':nombre_actor', $nombre_actor_like);
                 $stmt->execute();
 
+                // Mostrar los premios ganados por el actor
                 if ($stmt->rowCount() > 0) {
-                    echo "<h2>Premios ganados por el actor '$nombre_actor'</h2>";
-                    echo "<table border='1'>
-                        <tr>
-                            <th>Edición</th>
-                            <th>Actor</th>
-                            <th>Imagen del Actor</th>
-                            <th>Título de la Película</th>
-                            <th>Imagen de la Película</th>
-                        </tr>";
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                            <td>" . $row["edicion"] . "</td>
-                            <td>" . $row["actor"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["actor_imagen"]) . "' alt='Imagen del Actor' width='100'></td>
-                            <td>" . $row["pelicula"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["pelicula_imagen"]) . "' alt='Imagen de la Película' width='100'></td>
-                          </tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "No se encontraron premios para el actor '$nombre_actor'.";
-                }
+                    echo "<div class='container'>";
+                    echo "<div class='awards-section'>";
+                    echo "<h2>Premios individuales ganados por los actores</h2>";
+                    echo "<div class='awards-cards'>";
 
-                $dbcon = null;
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<div class='award-card'>";
+                        echo "<div class='actor-card-content'>";
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row['actor_imagen']) . "' alt='" . $row['actor'] . "' class='award-image'>";
+                        echo "<div class='award-details'>";
+                        echo "<p><strong>Edición:</strong> " . $row['edicion'] . "</p>";
+                        echo "<p><strong>Premio:</strong> " . $row['actor'] . "</p>";
+                        echo "<p><strong>Película:</strong> " . $row['pelicula'] . "</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                } else {
+                    echo "<p>No se encontraron premios para el actor '$nombre_actor'.</p>";
+                }
             }
-        } else {
-            echo "Error: No se pudo establecer la conexión con la base de datos.";
         }
         ?>
     </main>
-    <br><br>
     <footer>
         <li><a href="../index.php">Volver al menú</a></li>
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>

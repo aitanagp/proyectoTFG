@@ -57,33 +57,28 @@
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
-                echo "<h2>Premios ganados por películas dirigidas por $nombre_director</h2>";
-                echo "<table border='1'>
-                        <tr>
-                            <th>Edición del premio</th>
-                            <th>Nombre del director</th>
-                            <th>Imagen del director</th>
-                            <th>Título de la película</th>
-                            <th>Año de producción de la película</th>
-                            <th>Nacionalidad de la película</th>
-                            <th>Imagen de la película</th>
-                        </tr>";
+                echo "<div class='container'>";
+                echo "<div class='awards-section'>";
+                echo "<h2>Premios Individuales ganados por directores</h2>";
+                echo "<div class='awards-cards'>";
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>
-                        <td>" . $row["edicion_premio"] . "</td>
-                        <td>" . $row["nombre_director"] . "</td>
-                        <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen_director"]) . "' alt='Imagen del director' width='100'></td>
-                        <td>" . $row["titulo_pelicula"] . "</td>
-                        <td>" . $row["anyo_pelicula"] . "</td>
-                        <td>" . $row["nacionalidad_pelicula"] . "</td>
-                        <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen_pelicula"]) . "' alt='Imagen de la película' width='100'></td>
-                      </tr>";
+                    echo "<div class='award-card'>";
+                    echo "<div class='actor-card-content'>";
+                    echo "<img src='data:image/jpeg;base64," . base64_encode($row['imagen_director']) . "' alt='" . $row['nombre_director'] . "' class='award-image'>";
+                    echo "<div class='award-details'>";
+                    echo "<p><strong>Edición:</strong> " . $row['edicion_premio'] . "</p>";
+                    echo "<p><strong>Premio:</strong> " . $row['nombre_director'] . "</p>";
+                    echo "<p><strong>Película:</strong> " . $row['titulo_pelicula'] . "</p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
                 }
-                echo "</table>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
             } else {
-                echo "No se encontraron premios ganados por películas dirigidas por $nombre_director.";
+                echo "<p>No se encontraron premios para el director '$nombre_director'.</p>";
             }
-
             $dbcon = null;
         }
         ?>
