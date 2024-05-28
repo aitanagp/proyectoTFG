@@ -54,6 +54,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
             <input type="file" id="imagen" name="imagen" accept="image/*"><br>
             <button type="submit" value="Agregar interprete">Agregar interprete</button>
         </form>
+        
         <br><br>
         <?php
         require_once "../funciones.php";

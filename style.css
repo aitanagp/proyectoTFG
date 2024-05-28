@@ -91,6 +91,7 @@ main {
   margin: 150px auto; /* Ajustar margen superior para evitar que el contenido se esconda detrás de la cabecera */
   padding-top: 80px;
 }
+
 form {
   display: flex;
   flex-direction: column;
