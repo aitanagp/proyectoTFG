@@ -34,7 +34,7 @@
 
         <form method="post" action="">
             <label for="titulo_pelicula">Título Película:</label>
-            <input type="text" name="titulo_pelicula" id="titulo_pelicula" required>
+            <input type="text" name="titulo_pelicula" id="titulo_pelicula" required><br>
             <button type="submit">Buscar</button>
         </form>
 
