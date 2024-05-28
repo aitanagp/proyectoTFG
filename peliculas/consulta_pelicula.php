@@ -29,7 +29,6 @@
             </ul>
         </nav>
     </header>
-    <br><br>
     <main>
         <?php
         require_once "../funciones.php";
