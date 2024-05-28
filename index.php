@@ -29,7 +29,7 @@
                 </form>
             </div>
         </div>
-    </header>
+    
 
     <nav>
         <ul>
@@ -39,7 +39,7 @@
             <li><a href="premios/premios.php">Premios</a></li>
         </ul>
     </nav>
-
+</header>
     <main>
         <h2>Películas Recientes</h2>
         <div class="peliculas">

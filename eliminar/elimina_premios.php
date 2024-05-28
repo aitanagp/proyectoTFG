@@ -1,7 +1,7 @@
 <?php
 //seguridad de session
 session_start();
-if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
     echo "no tienes acceso";
     header("refresh:1;url=../index.php");
     die();
@@ -24,14 +24,15 @@ if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
+
+        <nav>
+            <ul>
+                <li><a href="../premios/premios.php">Premios</a></li>
+                <li><a href="../alta/alta_premios.php">Alta</a></li>
+                <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="../premios/premios.php">Premios</a></li>
-            <li><a href="../alta/alta_premios.php">Alta</a></li>
-            <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
-        </ul>
-    </nav>
     <main>
         <?php
         require_once "../funciones.php";

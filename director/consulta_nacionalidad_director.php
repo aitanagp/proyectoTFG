@@ -49,8 +49,8 @@
                 $nacionalidad = $_POST['nacionalidad'];
 
                 $sql = "SELECT nombre, nacionalidad, imagen
-                    FROM director 
-                    WHERE nacionalidad LIKE :nacionalidad";
+                        FROM director 
+                        WHERE nacionalidad LIKE :nacionalidad";
 
                 $stmt = $dbcon->prepare($sql);
 
@@ -61,21 +61,17 @@
 
                 $stmt->execute();
 
-                if ($stmt->rowCount() > 0) {
-                    echo "<table border='1'>
-                        <tr>
-                            <th>Actor</th>
-                            <th>Nacionalidad</th>
-                            <th>Imagen</th>
-                        </tr>";
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                            <td>" . $row["nombre"] . "</td>
-                            <td>" . $row["nacionalidad"] . "</td>
-                            <td><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'></td>
-                          </tr>";
+                if($stmt->rowCount() > 0) {
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<div class ='actor-section'>";
+                        echo "<div class='actor-info'>";
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'>";
+                        echo "<div class='actor-details'>";
+                        echo "<h3>{$row['nombre']}</h3>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
                     }
-                    echo "</table>";
                 } else {
                     echo "No se encontró ninguna película con el nombre de actor '$nacionalidad'.";
                 }

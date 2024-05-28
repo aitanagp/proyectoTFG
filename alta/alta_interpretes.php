@@ -1,7 +1,7 @@
 <?php
 //seguridad de session
 session_start();
-if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
     echo "no tienes acceso";
     header("refresh:1;url=../index.php");
     die();
@@ -24,19 +24,20 @@ if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
+
+        <nav>
+            <ul>
+                <li><a href="../alta/alta_interpretes.php">Alta</a></li>
+                <li><a href="../eliminar/elimina_interpretes.php">Eliminación</a></li>
+                <li><a href="../interpretes/consulta_interpretes.php">Consulta</a></li>
+                <li><a href="../interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
+                <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
+                <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
+                <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
+                <li><a href="../index.php">Volver al menú</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="../alta/alta_interpretes.php">Alta</a></li>
-            <li><a href="../eliminar/elimina_interpretes.php">Eliminación</a></li>
-            <li><a href="../interpretes/consulta_interpretes.php">Consulta</a></li>
-            <li><a href="../interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
-            <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
-            <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
-            <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
-            <li><a href="../index.php">Volver al menú</a></li>
-        </ul>
-    </nav>
     <main>
         <?php echo "<h2>Añadir intérpretes</h2>"; ?>
 

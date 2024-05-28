@@ -15,18 +15,18 @@
     <div class="title">
       <h1>Consulta de Películas</h1>
     </div>
+    <nav>
+      <ul>
+        <li><a href="../alta/alta_interpretes.php">Alta</a></li>
+        <li><a href="../eliminar/elimina_interpretes.php">Eliminación</a></li>
+        <li><a href="../interpretes/consulta_interpretes.php">Consulta</a></li>
+        <li><a href="../interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
+        <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
+        <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
+        <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
+      </ul>
+    </nav>
   </header>
-  <nav>
-    <ul>
-      <li><a href="../alta/alta_interpretes.php">Alta</a></li>
-      <li><a href="../eliminar/elimina_interpretes.php">Eliminación</a></li>
-      <li><a href="../interpretes/consulta_interpretes.php">Consulta</a></li>
-      <li><a href="../interpretes/consulta_nacionalidad_actor.php">Por nacionalidad</a></li>
-      <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
-      <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
-      <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
-    </ul>
-  </nav>
   <main>
     <h2>Consulta de intérpretes por año de nacimiento</h2>
     <form action="" method="post">

@@ -15,19 +15,19 @@
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="../alta/alta_peliculas.php">Alta</a></li>
+                <li><a href="../eliminar/elimina_peliculas.php">Eliminación</a></li>
+                <li><a href="../peliculas/consulta_pelicula.php">Consulta</a></li>
+                <li><a href="../peliculas/consulta_fecha.php">Por Fecha</a></li>
+                <li><a href="../peliculas/consulta_director.php">Por director</a></li>
+                <li><a href="../peliculas/consulta_titulo.php">Por título</a></li>
+                <li><a href="../peliculas/consulta_actor.php">Por Actor</a></li>
+                <li><a href="../peliculas/consulta_premios.php">Por premios</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="../alta/alta_peliculas.php">Alta</a></li>
-            <li><a href="../eliminar/elimina_peliculas.php">Eliminación</a></li>
-            <li><a href="../peliculas/consulta_pelicula.php">Consulta</a></li>
-            <li><a href="../peliculas/consulta_fecha.php">Por Fecha</a></li>
-            <li><a href="../peliculas/consulta_director.php">Por director</a></li>
-            <li><a href="../peliculas/consulta_titulo.php">Por título</a></li>
-            <li><a href="../peliculas/consulta_actor.php">Por Actor</a></li>
-            <li><a href="../peliculas/consulta_premios.php">Por premios</a></li>
-        </ul>
-    </nav>
     <main>
         <?php
         require_once "../funciones.php";

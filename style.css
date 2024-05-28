@@ -15,15 +15,24 @@ body {
   color: var(--text-color-white);
 }
 .home-link {
-  position: absolute; /* Colocar en una posición absoluta */
-  top: 0; /* Alinear arriba */
-  left: 0; /* Alinear a la izquierda */
-  font-size: 24px; /* Tamaño del ícono */
-  padding: 10px; /* Espacio alrededor del ícono */
-  text-decoration: none; /* Quitar subrayado del enlace */
-  color: inherit; /* Heredar el color del texto */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit; 
 }
 
+/* Estilos para el encabezado */
+header {
+  background-color: var(--background-color-dark-gray);
+  padding: 30px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  top: 0;
+}
 
 /* Estilos para el login */
 .login-container {
@@ -79,7 +88,7 @@ header {
   background-color: #333;
   color: white;
   padding: 10px 20px;
-  position: relative;
+  position: fixed;
 }
 
 /* Estilos para la sección principal */
@@ -100,12 +109,7 @@ form label {
   margin-bottom: 5px;
   font-weight: bold;
 }
-/* Estilos para el encabezado */
-header {
-  background-color: var(--background-color-dark-gray);
-  padding: 20px;
-  text-align: center;
-}
+
 
 /* Estilos para el logotipo */
 .logo {

@@ -15,18 +15,18 @@
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="../alta/alta_directores.php">Alta</a></li>
-            <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
-            <li><a href="../director/consulta_directores.php">Consulta</a></li>
-            <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
-            <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
-            <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
-        </ul>
-    </nav>
 
+        <nav>
+            <ul>
+                <li><a href="../alta/alta_directores.php">Alta</a></li>
+                <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
+                <li><a href="../director/consulta_directores.php">Consulta</a></li>
+                <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
+                <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
+                <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <?php echo "<h2>Por año de nacimiento</h2>"; ?>
 
@@ -49,7 +49,7 @@
                 $anyo = $_POST['anyo'];
 
                 $sql = "SELECT nombre, anyo_nacimiento, imagen 
-        FROM director WHERE anyo_nacimiento = :anyo";
+                        FROM director WHERE anyo_nacimiento = :anyo";
 
                 $stmt = $dbcon->prepare($sql);
 

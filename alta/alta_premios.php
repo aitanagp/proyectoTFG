@@ -1,7 +1,7 @@
 <?php
 //seguridad de session
 session_start();
-if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
     echo "no tienes acceso";
     header("refresh:1;url=../index.php");
     die();
@@ -150,15 +150,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="../premios/premios.php">Premios</a></li>
-            <li><a href="../alta/alta_premios.php">Alta</a></li>
-            <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
-        </ul>
-    </nav>
 
+        <nav>
+            <ul>
+                <li><a href="../premios/premios.php">Premios</a></li>
+                <li><a href="../alta/alta_premios.php">Alta</a></li>
+                <li><a href="../eliminar/elimina_premios.php">Eliminación</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <?php echo "<h2>Añadir Premios</h2>"; ?>
 
