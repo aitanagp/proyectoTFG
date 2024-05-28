@@ -1,4 +1,13 @@
 <?php
+//seguridad de session
+session_start();
+if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+    echo "no tienes acceso";
+    header("refresh:1;url=../index.php");
+    die();
+}
+?>
+<?php
 require_once "../funciones.php";
 $ruta = obtenerdirseg();
 require_once $ruta . "conectaDB.php";
@@ -136,6 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
 
 <body>
     <header>
+        <a href="../index.php" class="home-link">&#8962;</a>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
@@ -159,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
             </select>
             <label for="edicion_pelicula">Edición:</label>
             <input type="number" id="edicion_pelicula" name="edicion_pelicula">
-            <input type="submit" name="submit_pelicula" value="Agrega Premio">
+            <button type="submit" name="submit_pelicula" value="Agrega Premio">Agregar premio</button>
         </form>
 
         <form action="" method="post">
@@ -172,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
             </select>
             <label for="edicion_director">Edición:</label>
             <input type="text" id="edicion_director" name="edicion_director">
-            <input type="submit" name="submit_director" value="Agrega Premio">
+            <button type="submit" name="submit_director" value="Agrega Premio">Agregar premio</button>
         </form>
 
         <form action="" method="post">
@@ -185,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
             </select>
             <label for="edicion_guion">Edición:</label>
             <input type="text" id="edicion_guion" name="edicion_guion">
-            <input type="submit" name="submit_guion" value="Agrega Premio">
+            <button type="submit" name="submit_guion" value="Agrega Premio">Agregar premio</button>
         </form>
 
         <form action="" method="post">
@@ -198,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
             </select>
             <label for="edicion_interprete">Edición:</label>
             <input type="text" id="edicion_interprete" name="edicion_interprete">
-            <input type="submit" name="submit_interprete" value="Agrega Premio">
+            <button type="submit" name="submit_interprete" value="Agrega Premio">Agregar premio</button>
         </form>
     </main>
     <br><br>

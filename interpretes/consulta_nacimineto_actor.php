@@ -10,6 +10,7 @@
 
 <body>
   <header>
+    <a href="../index.php" class="home-link">&#8962;</a>
     <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
     <div class="title">
       <h1>Consulta de Películas</h1>

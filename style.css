@@ -9,10 +9,77 @@
 
 /* Estilos para el cuerpo de la página */
 body {
-  margin: 0; /* Elimina el margen predeterminado */
-  font-family: Arial, sans-serif; /* Utiliza la fuente Arial o una fuente sans-serif */
-  background-color: var(--background-color-black); /* Establece el color de fondo negro */
-  color: var(--text-color-white); /* Establece el color del texto blanco */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color-black);
+  color: var(--text-color-white);
+}
+.home-link {
+  position: absolute; /* Colocar en una posición absoluta */
+  top: 0; /* Alinear arriba */
+  left: 0; /* Alinear a la izquierda */
+  font-size: 24px; /* Tamaño del ícono */
+  padding: 10px; /* Espacio alrededor del ícono */
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit; /* Heredar el color del texto */
+}
+
+
+/* Estilos para el login */
+.login-container {
+  background-color: var(--text-color-white);
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  margin-right: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: var(--background-color-black);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Estilos para el encabezado */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  position: relative;
 }
 
 /* Estilos para la sección principal */
@@ -33,125 +100,111 @@ form label {
   margin-bottom: 5px;
   font-weight: bold;
 }
-
-form input[type="submit"] {
-  background-color: var(--text-color-white);
-  color: var(--text-color-white);
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-form input[type="submit"]:hover {
-  background-color: #555;
-}
-
-
 /* Estilos para el encabezado */
 header {
-  background-color: var(--background-color-dark-gray); /* Fondo gris oscuro */
-  padding: 20px; /* Relleno de 20 píxeles */
-  text-align: center; /* Texto centrado */
+  background-color: var(--background-color-dark-gray);
+  padding: 20px;
+  text-align: center;
 }
 
 /* Estilos para el logotipo */
 .logo {
-  width: 100px; /* Ancho de 100 píxeles */
-  height: auto; /* Altura automática */
+  width: 100px;
+  height: auto;
 }
 
 /* Estilos para el título */
 .title h1 {
   margin: 0;
-  font-size: 2rem; 
+  font-size: 2rem;
   color: var(--text-color-white);
 }
 
 /* Estilos para la barra de navegación */
 nav {
-  background-color: var(--background-color-dark-gray); /* Fondo gris oscuro */
+  background-color: var(--background-color-dark-gray);
 }
 
 nav ul {
-  margin: 0; 
-  padding: 0; /* Sin relleno */
-  list-style: none; /* Sin viñetas */
-  display: flex; /* Utiliza flexbox para disposición horizontal */
-  justify-content: center; 
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
 }
 
 nav ul li {
-  display: inline-block; 
+  display: inline-block;
   position: relative;
-  margin: 0 10px; /* Espaciado entre elementos */
+  margin: 0 10px;
 }
 
 nav ul li a {
-  color: var(--text-color-white); /* Texto blanco */
-  text-decoration: none; /* Sin subrayado */
-  padding: 10px 15px; /* Relleno para mejorar la accesibilidad */
+  color: var(--text-color-white);
+  text-decoration: none;
+  padding: 10px 15px;
 }
 
 nav ul li a:hover {
-  background-color: var(--text-color-light-gray); /* Fondo gris claro al pasar el mouse */
-  color: var(--background-color-black); /* Texto negro al pasar el mouse */
+  background-color: var(--text-color-light-gray);
+  color: var(--background-color-black);
 }
 
 /* Estilos para los encabezados */
 h2 {
-  background-color: var(--background-color-dark-red); /* Fondo rojo oscuro */
-  padding: 20px; /* Relleno de 20 píxeles */
-  margin: 20px 0; /* Margen para separar las secciones */
+  background-color: var(--background-color-dark-red);
+  padding: 20px;
+  margin: 20px 0;
 }
 
 /* Estilos para las secciones de películas e intérpretes */
 .peliculas,
 .interpretes {
-  display: flex; /* Utiliza flexbox */
-  justify-content: space-around; /* Distribuir el espacio alrededor */
-  flex-wrap: wrap; /* Envolver los elementos en múltiples líneas */
-  gap: 20px; /* Espaciado entre elementos */
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 /* Estilos para los elementos de película e intérprete */
 .pelicula,
 .interprete {
-  width: 200px; /* Ancho de 200 píxeles */
-  margin: 10px; /* Margen exterior de 10 píxeles */
+  width: 200px;
+  margin: 10px;
 }
 
 .pelicula img,
 .interprete img {
-  max-width: 100%; /* Ancho máximo del 100% */
-  height: auto; /* Altura automática para mantener la proporción */
-  border-radius: 10px; /* Bordes redondeados */
-  border: 2px solid var(--text-color-light-gray); /* Marco alrededor de las imágenes */
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid var(--text-color-light-gray);
 }
 
 /* Estilos adicionales para la sección de intérpretes */
 .interpretes {
-  flex-direction: row; /* Dirección de fila */
+  flex-direction: row;
 }
 
 /* Estilos para el pie de página */
 footer {
-  background-color: var(--background-color-dark-gray); /* Fondo gris oscuro */
-  color: var(--text-color-white); /* Texto blanco */
-  padding: 20px; /* Relleno de 20 píxeles */
-  text-align: center; /* Texto centrado */
+  background-color: var(--background-color-dark-gray);
+  color: var(--text-color-white);
+  padding: 20px;
+  text-align: center;
 }
 
 footer p {
-  margin: 0; /* Sin margen */
+  margin: 0;
 }
 
 footer li a {
-  color: var(--text-color-light-gray); /* Texto gris claro */
-  text-decoration: none; /* Sin subrayado */
+  color: var(--text-color-light-gray);
+  text-decoration: none;
 }
 
 footer li a:hover {
-  color: var(--text-color-white); /* Texto blanco al pasar el mouse */
+  color: var(--text-color-white);
 }
 
 /* Estilos específicos para la página de directores y películas */
@@ -198,6 +251,7 @@ footer li a:hover {
 .pelicula-image {
   width: 150px;
 }
+
 /* Estilos específicos para la página de intérpretes */
 .actor-section {
   border-bottom: 1px solid #000;

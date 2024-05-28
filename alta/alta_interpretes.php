@@ -1,3 +1,12 @@
+<?php
+//seguridad de session
+session_start();
+if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+    echo "no tienes acceso";
+    header("refresh:1;url=../index.php");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +19,7 @@
 
 <body>
     <header>
+        <a href="../index.php" class="home-link">&#8962;</a>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
@@ -24,6 +34,7 @@
             <li><a href="../interpretes/consulta_nacimineto_actor.php">Por nacimiento</a></li>
             <li><a href="../interpretes/consulta_peliculas_actor.php">Por películas</a></li>
             <li><a href="../interpretes/consulta_premios_actor.php">Por premios</a></li>
+            <li><a href="../index.php">Volver al menú</a></li>
         </ul>
     </nav>
     <main>
@@ -40,7 +51,7 @@
             <input type="number" id="anyo_nacimiento" name="anyo_nacimiento" required><br>
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen" accept="image/*"><br>
-            <input type="submit" value="Agregar Película">
+            <button type="submit" value="Agregar interprete">Agregar interprete</button>
         </form>
         <br><br>
         <?php

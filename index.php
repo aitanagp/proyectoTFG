@@ -10,10 +10,24 @@
 
 <body>
     <header>
-        <img src="imagenes/logo.jpg" alt="Logo" class="logo">
-        <div class="title">
-            <h1>Base de Datos de Películas</h1>
-        </div>
+        <div class="header-container">
+            <img src="imagenes/logo.jpg" alt="Logo" class="logo">
+            <div class="title">
+                <h1>Base de Datos de Películas</h1>
+            </div>
+            <div class="login-container">
+                <form action="login.php" method="post">
+                    <div class="form-group">
+                        <label for="nombre">Nombre de Usuario</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
         </div>
     </header>
 

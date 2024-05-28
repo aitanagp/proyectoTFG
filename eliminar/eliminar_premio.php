@@ -1,4 +1,13 @@
 <?php
+//seguridad de session
+session_start();
+if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+    echo "no tienes acceso";
+    header("refresh:1;url=../index.php");
+    die();
+}
+?>
+<?php
 require_once "../funciones.php";
 $ruta = obtenerdirseg();
 require_once $ruta . "conectaDB.php";

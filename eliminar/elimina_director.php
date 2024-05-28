@@ -1,3 +1,12 @@
+<?php
+//seguridad de session
+session_start();
+if(!isset($_SESSION['nombre']) || $_SESSION['nombre']!='Administrador'){
+    echo "no tienes acceso";
+    header("refresh:1;url=../index.php");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +19,7 @@
 
 <body>
     <header>
+        <a href="../index.php" class="home-link">&#8962;</a>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
@@ -54,7 +64,7 @@
                 }
                 ?>
             </select><br>
-            <input type="submit" value="Eliminar Director">
+            <button type="submit" value="Eliminar Director">Eliminar director</button>
         </form>
 
         <?php
