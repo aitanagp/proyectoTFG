@@ -13,8 +13,9 @@
         <a href="../index.php" class="home-link">&#8962;</a>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
-            <h1>Buscar por película</h1>
+            <h1>Base de Datos de Películas</h1>
         </div>
+        <br>
         <nav>
             <ul>
                 <li><a href="../alta/alta_interpretes.php">Alta</a></li>

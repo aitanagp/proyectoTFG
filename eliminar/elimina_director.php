@@ -24,6 +24,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
+        <br>
         <nav>
             <ul>
                 <li><a href="../alta/alta_directores.php">Alta</a></li>

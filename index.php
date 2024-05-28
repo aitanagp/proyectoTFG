@@ -15,6 +15,7 @@
             <div class="title">
                 <h1>Base de Datos de Películas</h1>
             </div>
+            <br>
             <div class="login-container">
                 <form action="login.php" method="post">
                     <div class="form-group">

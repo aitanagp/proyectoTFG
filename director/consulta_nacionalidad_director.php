@@ -26,7 +26,7 @@
             <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
         </ul>
     </nav>
-
+    <br>
     <main>
         <?php echo "<h2>Por año de nacionalidad</h2>"; ?>
 
