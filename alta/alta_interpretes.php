@@ -52,9 +52,17 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
             <input type="number" id="anyo_nacimiento" name="anyo_nacimiento" required><br>
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen" accept="image/*"><br>
-            <button type="submit" value="Agregar interprete">Agregar interprete</button>
+            <button type="submit" name="interprete" value="Agregar interprete">Agregar interprete</button>
         </form>
-        
+        <br><br>
+        <form action="" method="post" enctype="multipart/form-data">
+            <label for="nombre">Nombre interprete:</label>
+            <input type="text" id="nombre" name="nombre" required><br>
+            <label for="titulo">Titulo película:</label>
+            <input type="text" id="titulo" name="titulo" required><br>
+            <button type="submit" name="actua">Agregar</button>
+        </form>
+
         <br><br>
         <?php
         require_once "../funciones.php";
@@ -62,7 +70,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
         require_once $ruta . "conectaDB.php";
 
         // Verificar si se ha enviado el formulario
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['interprete'])) {
             // Recoger los datos del formulario
             $idinterprete = $_POST['idinterprete'];
             $nombre_inter = $_POST['nombre_inter'];
@@ -101,6 +109,32 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
                 echo "Error: No se pudo establecer la conexión con la base de datos.";
             }
         }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actua'])) {
+            $nombre = $_POST['nombre_inter'];
+            $titulo = $_POST['titulo'];
+
+            if ($dbcon) {
+                $idinterprete = "SELECT idinterprete FROM interprete WHERE nombre_inter like :nombre_inter";
+                $idpelicula = "SELECT idpelicula FROM pelicula WHERE titulo LIKE :titulo";
+
+                $sql = "INSERT INTO actua (idpelicula, idinterprete) VALUES (:idpelicula, :idinterprete)";
+                $stmt_insert = $dbcon->prepare($sql_insert);
+                $stmt_insert->bindParam(':idinterprete', $idinterprete);
+                $stmt_insert->bindParam(':idpelicula', $idpelicula);
+                $stmt_insert->execute();
+
+                if ($stmt->execute()) {
+                    echo "El intérprete se ha insertado correctamente.";
+                } else {
+                    echo "Error al insertar el intérprete.";
+                }
+            } else {
+                echo "Error: No se pudo establecer la conexión con la base de datos.";
+            }
+        }
+
+
         ?>
     </main>
     <br><br>
