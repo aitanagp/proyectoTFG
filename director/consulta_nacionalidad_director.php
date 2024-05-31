@@ -15,17 +15,18 @@
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
+        <br>
+        <nav>
+            <ul>
+                <li><a href="../alta/alta_directores.php">Alta</a></li>
+                <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
+                <li><a href="../director/consulta_directores.php">Consulta</a></li>
+                <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
+                <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
+                <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="../alta/alta_directores.php">Alta</a></li>
-            <li><a href="../eliminar/elimina_director.php">Eliminación</a></li>
-            <li><a href="../director/consulta_directores.php">Consulta</a></li>
-            <li><a href="../director/consulta_nacionalidad_director.php">Por nacionalidad</a></li>
-            <li><a href="../director/consulta_nacimiento_director.php">Por fecha de nacimiento</a></li>
-            <li><a href="../director/consulta_premios_director.php">Por premios</a></li>
-        </ul>
-    </nav>
     <br>
     <main>
         <?php echo "<h2>Por año de nacionalidad</h2>"; ?>
@@ -61,8 +62,8 @@
 
                 $stmt->execute();
 
-                if($stmt->rowCount() > 0) {
-                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($stmt->rowCount() > 0) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<div class ='actor-section'>";
                         echo "<div class='actor-info'>";
                         echo "<img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Image' width='100'>";

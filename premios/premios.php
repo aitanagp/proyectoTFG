@@ -36,7 +36,8 @@
         if (isset($dbcon)) {
             $sql_premios_pelicula = "SELECT o.edicion, p.titulo AS premio, 'Mejor Película' AS tipo_premio, p.imagen AS pelicula_imagen
                             FROM o_pelicula o
-                            JOIN pelicula p ON o.idpelicula = p.idpelicula";
+                            JOIN pelicula p ON o.idpelicula = p.idpelicula
+                            ORDER BY edicion";
 
             $stmt_premios_pelicula = $dbcon->prepare($sql_premios_pelicula);
             $stmt_premios_pelicula->execute();
@@ -44,7 +45,8 @@
             $sql_premios_actores = "SELECT o.edicion, i.nombre_inter AS premio, 'Mejor Actor' AS tipo_premio, i.imagen AS actor_imagen, p.titulo AS pelicula_titulo
                             FROM o_interprete o
                             JOIN interprete i ON o.idinterprete = i.idinterprete
-                            JOIN pelicula p ON o.idpelicula = p.idpelicula";
+                            JOIN pelicula p ON o.idpelicula = p.idpelicula
+                            ORDER BY edicion";
 
             $stmt_premios_actores = $dbcon->prepare($sql_premios_actores);
             $stmt_premios_actores->execute();
@@ -52,7 +54,8 @@
             $sql_premios_guion = "SELECT o.edicion, g.nombre_guion AS premio, 'Mejor Guion' AS tipo_premio, p.imagen AS pelicula_imagen
                         FROM o_guion o
                         JOIN guion g ON o.idguion = g.idguion
-                        JOIN pelicula p ON o.idpelicula = p.idpelicula";
+                        JOIN pelicula p ON o.idpelicula = p.idpelicula
+                        ORDER BY edicion";
 
             $stmt_premios_guion = $dbcon->prepare($sql_premios_guion);
             $stmt_premios_guion->execute();
@@ -61,7 +64,8 @@
             $sql_premios_director = "SELECT o.edicion, d.nombre AS premio, 'Mejor Director' AS tipo_premio, d.imagen AS director_imagen
                             FROM o_director o
                             JOIN director d ON o.iddirector = d.iddirector
-                            JOIN pelicula p ON o.idpelicula = p.idpelicula";
+                            JOIN pelicula p ON o.idpelicula = p.idpelicula
+                            ORDER BY edicion";
 
             $stmt_premios_director = $dbcon->prepare($sql_premios_director);
             $stmt_premios_director->execute();
