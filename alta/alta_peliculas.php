@@ -62,9 +62,15 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
             <input type="file" id="imagen" name="imagen" accept="image/*"><br>
             <button type="submit" value="Agregar Película">Agregar pelicula</button>
         </form>
+    </main>
+    <br><br>
+    <footer>
+        <li><a href="../index.php">Volver al menú</a></li>
+        <p>© 2024 AGarcía. Todos los derechos reservados.</p>
+    </footer>
 </body>
-
 </html>
+
 <?php
 require_once "../funciones.php";
 $ruta = obtenerdirseg();
@@ -80,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idguion = $_POST['idguion'];
     $idremake = $_POST['idremake'];
     $anyo = $_POST['anyo'];
+    $nombreguion = $_POST['nombreguion'];
 
     // Manejar la carga de la imagen
     $imagen_path = $_FILES["imagen"]["tmp_name"];
@@ -89,51 +96,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dbname = "mydb";
     $dbcon = conectaDB($dbname);
 
-
     if ($dbcon) {
-        $sql = "INSERT INTO pelicula (idpelicula, titulo, nacionalidad, idguion, idremake, anyo_prod, imagen)
-                VALUES (:idpelicula, :titulo, :nacionalidad, :idguion, :idremake, :anyo, :imagen)";
-        $stmt = $dbcon->prepare($sql);
-        $stmt->bindParam(':idpelicula', $idpelicula);
-        $stmt->bindParam(':titulo', $titulo);
-        $stmt->bindParam(':nacionalidad', $nacionalidad);
-        $stmt->bindParam(':idguion', $idguion);
-        $stmt->bindParam(':idremake', $idremake);
-        $stmt->bindParam(':anyo', $anyo);
-        $stmt->bindParam(':imagen', $imagen_contenido, PDO::PARAM_LOB);
-        $stmt->execute();
+        try {
+            // Verificar si el idpelicula ya existe
+            $sqlCheck = "SELECT COUNT(*) FROM pelicula WHERE idpelicula = :idpelicula";
+            $stmtCheck = $dbcon->prepare($sqlCheck);
+            $stmtCheck->bindParam(':idpelicula', $idpelicula);
+            $stmtCheck->execute();
+            if ($stmtCheck->fetchColumn() > 0) {
+                echo "Error: El ID de la película ya existe.";
+            } else {
+                $dbcon->beginTransaction();
 
-        // Insertar datos en la tabla de relación dirige
-        $sql2 = "INSERT INTO dirige (iddirector, idpelicula) VALUES (:iddirector, :idpelicula)";
-        $stmt2 = $dbcon->prepare($sql2);
-        $stmt2->bindParam(':iddirector', $iddirector);
-        $stmt2->bindParam(':idpelicula', $idpelicula);
-        $stmt2->execute();
+                $sql = "INSERT INTO pelicula (idpelicula, titulo, nacionalidad, idguion, idremake, anyo_prod, imagen)
+                        VALUES (:idpelicula, :titulo, :nacionalidad, :idguion, :idremake, :anyo, :imagen)";
+                $stmt = $dbcon->prepare($sql);
+                $stmt->bindParam(':idpelicula', $idpelicula);
+                $stmt->bindParam(':titulo', $titulo);
+                $stmt->bindParam(':nacionalidad', $nacionalidad);
+                $stmt->bindParam(':idguion', $idguion);
+                $stmt->bindParam(':idremake', $idremake);
+                $stmt->bindParam(':anyo', $anyo);
+                $stmt->bindParam(':imagen', $imagen_contenido, PDO::PARAM_LOB);
+                $stmt->execute();
 
+                $sql2 = "INSERT INTO dirige (iddirector, idpelicula) VALUES (:iddirector, :idpelicula)";
+                $stmt2 = $dbcon->prepare($sql2);
+                $stmt2->bindParam(':iddirector', $iddirector);
+                $stmt2->bindParam(':idpelicula', $idpelicula);
+                $stmt2->execute();
 
-        $sql3 = "INSERT INTO guion (idguion, nombre_guion, idpelicula) 
-                VALUES (:idguion, :nombreguion, :idpelicula)";
-        $stmt3 = $dbcon->prepare($sql3);
-        $stmt3->bindParam(':idguion', $idguion);
-        $stmt3->bindParam(':nombreguion', $nombreguion);
-        $stmt3->bindParam(':idpelicula', $idpelicula);
-        $stmt3->execute();
-        if ($stmt->execute()) {
-            echo "La película se ha insertado correctamente.";
-        } else {
-            echo "Error al insertar la película.";
+                $sql3 = "INSERT INTO guion (idguion, nombre_guion) 
+                        VALUES (:idguion, :nombreguion)";
+                $stmt3 = $dbcon->prepare($sql3);
+                $stmt3->bindParam(':idguion', $idguion);
+                $stmt3->bindParam(':nombreguion', $nombreguion);
+                $stmt3->execute();
+
+                $dbcon->commit();
+
+                echo "La película se ha insertado correctamente.";
+            }
+        } catch (PDOException $e) {
+            $dbcon->rollBack();
+            if ($e->getCode() == 23000) {
+                echo "Error: El ID de la película ya existe.";
+            } else {
+                echo "Error en la base de datos: " . $e->getMessage();
+            }
         }
     } else {
         echo "Error: No se pudo establecer la conexión con la base de datos.";
     }
 }
 ?>
-</main>
-<br><br>
-<footer>
-    <li><a href="../index.php">Volver al menú</a></li>
-    <p>© 2024 AGarcía. Todos los derechos reservados.</p>
-</footer>
-</body>
-
-</html>

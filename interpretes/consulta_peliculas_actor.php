@@ -51,11 +51,11 @@
             if (isset($_POST['titulo_pelicula'])) {
                 $titulo_pelicula = $_POST['titulo_pelicula'];
 
-                $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen, anyo_nacimiento as anyo
-            FROM interprete i
-            JOIN actua a ON i.idinterprete = a.idinterprete
-            JOIN pelicula p ON a.idpelicula = p.idpelicula
-            WHERE p.titulo LIKE :titulo_pelicula";
+                $sql = "SELECT i.nombre_inter as nombre, i.imagen as imagen, anyo_nacimiento as anyo, titulo
+                        FROM interprete i
+                        JOIN actua a ON i.idinterprete = a.idinterprete
+                        JOIN pelicula p ON a.idpelicula = p.idpelicula
+                        WHERE p.titulo LIKE :titulo_pelicula";
 
                 $stmt = $dbcon->prepare($sql);
 
@@ -72,6 +72,7 @@
                         echo "<tr class='actor-section'>";
                         echo "<td class='actor-name'>" . $row["nombre"] . "</td>";
                         echo "<td class='actor-birth'>" . $row["anyo"] . "</td>";
+                        echo "<td>". $row["titulo"] . "</td>";
                         echo "<td class='actor-image'><img src='data:image/jpeg;base64," . base64_encode($row["imagen"]) . "' alt='Imagen actor' width='100'></td>";
                         echo "</tr>";
                     }
