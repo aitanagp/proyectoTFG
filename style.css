@@ -25,6 +25,14 @@ body {
   color: inherit; /* Heredar el color del texto */
 }
 
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  text-align: right;
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit;
+}
 /* Estilos para el login */
 .login-container {
   background-color: var(--text-color-white);

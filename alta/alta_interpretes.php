@@ -15,7 +15,8 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta de Intérpretes</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -81,17 +82,28 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
             $nombre_inter = $_POST['nombre_inter'];
             $nacionalidad = $_POST['nacionalidad'];
             $anyo_nacimiento = $_POST['anyo_nacimiento'];
+            // Recibir datos de la imagen
+            $imagen = $_FILES['imagen']['tmp_name'];
+            $tipo_imagen = $_FILES['imagen']['type'];
+            $tamanyo_imagen = $_FILES['imagen']['size'];
+            $tmp_name = $_FILES['imagen']['tmp_name'];
 
-            // Manejar la carga de la imagen
-            $target_dir = "uploads/"; // Directorio donde se guardarán las imágenes
-            $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            // Verificar que el archivo temporal existe
+            if (!is_uploaded_file($imagen)) {
+                die("Error: El archivo temporal no existe.");
+            }
+
+            // Obtener el contenido del archivo
+            $imagen_data = file_get_contents($imagen);
+            if ($imagen_data === false) {
+                die("Error: No se pudo leer el contenido del archivo.");
+            }
+
 
             // Comprobar si la conexión a la base de datos es correcta
             if ($dbcon) {
-                // Guardar la ruta de la imagen en la base de datos
-                $imagen_path = $target_file;
+                //guarda la ruta de la imagen
+                $imagen_ruta = '/htdocs/php/imagenes/directores/' . basename($imagen);
 
                 $sql = "INSERT INTO interprete (idinterprete, nombre_inter, nacionalidad, anyo_nacimiento, imagen)
                 VALUES (:idinterprete, :nombre_inter, :nacionalidad, :anyo_nacimiento, :imagen)";
@@ -100,7 +112,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
                 $stmt->bindParam(':nombre_inter', $nombre_inter);
                 $stmt->bindParam(':nacionalidad', $nacionalidad);
                 $stmt->bindParam(':anyo_nacimiento', $anyo_nacimiento);
-                $stmt->bindParam(':imagen', $imagen_path);
+                $stmt->bindParam(':imagen', $imagen_data, PDO::PARAM_LOB);
 
                 if ($stmt->execute()) {
                     echo "El intérprete se ha insertado correctamente.";

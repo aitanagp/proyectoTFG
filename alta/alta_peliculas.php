@@ -15,7 +15,8 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta de películas</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -27,6 +28,9 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
+        <span class="material-symbols-outlined">
+                <a href="logout.php" class="logout">logout</a>
+            </span>
         <br>
         <nav>
             <ul>
@@ -91,16 +95,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idremake = $_POST['idremake'];
     $anyo = $_POST['anyo'];
     $nombreguion = $_POST['nombreguion'];
+    // Recibir datos de la imagen
+    $imagen = $_FILES['imagen']['tmp_name'];
+    $tipo_imagen = $_FILES['imagen']['type'];
+    $tamanyo_imagen = $_FILES['imagen']['size'];
+    $tmp_name = $_FILES['imagen']['tmp_name'];
 
-    // Manejar la carga de la imagen
-    $imagen_path = $_FILES["imagen"]["tmp_name"];
-    $imagen_contenido = file_get_contents($imagen_path); // Obtener el contenido binario de la imagen
+    // Verificar que el archivo temporal existe
+    if (!is_uploaded_file($imagen)) {
+        die("Error: El archivo temporal no existe.");
+    }
+
+    // Obtener el contenido del archivo
+    $imagen_data = file_get_contents($imagen);
+    if ($imagen_data === false) {
+        die("Error: No se pudo leer el contenido del archivo.");
+    }
+
 
     // Insertar los datos en la base de datos
     $dbname = "mydb";
     $dbcon = conectaDB($dbname);
 
     if ($dbcon) {
+        //guarda la ruta de la imagen
+        $imagen_ruta = '/htdocs/php/imagenes/directores/' . basename($imagen);
         try {
             // Verificar si el idpelicula ya existe
             $sqlCheck = "SELECT COUNT(*) FROM pelicula WHERE idpelicula = :idpelicula";
@@ -121,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bindParam(':idguion', $idguion);
                 $stmt->bindParam(':idremake', $idremake);
                 $stmt->bindParam(':anyo', $anyo);
-                $stmt->bindParam(':imagen', $imagen_contenido, PDO::PARAM_LOB);
+                $stmt->bindParam(':imagen', $imagen_data, PDO::PARAM_LOB);
                 $stmt->execute();
 
                 $sql2 = "INSERT INTO dirige (iddirector, idpelicula) VALUES (:iddirector, :idpelicula)";

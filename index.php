@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$usuario = $_SESSION['usuario'];
+$rol = $_SESSION['rol'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,6 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Películas</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -16,19 +29,11 @@
                 <h1>Base de Datos de Películas</h1>
             </div>
             <br>
-            <div class="login-container">
-                <form action="login.php" method="post">
-                    <div class="form-group">
-                        <label for="nombre">Nombre de Usuario</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
+            <span class="material-symbols-outlined">
+            </span>
+            <span class="material-symbols-outlined">
+                <a href="logout.php" class="logout">logout</a>
+            </span>
         </div>
         <nav>
             <ul>
