@@ -353,3 +353,10 @@ footer li a:hover {
   text-align: center;
   margin-top: 5px;
 }
+
+.no-link-style {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+

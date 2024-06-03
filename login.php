@@ -11,7 +11,7 @@ session_start();
 $_SESSION['nombre'] = $nombre;
 
 // Crear conexión
-$conexion = mysqli_connect("localhost", "root", "root", "mydb");
+$conexion = mysqli_connect("localhost", "root", "", "mydb");
 
 $consulta = "SELECT idlogin FROM login
                 WHERE nombre='$nombre' 

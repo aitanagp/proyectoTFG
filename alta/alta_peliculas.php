@@ -15,11 +15,14 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta de películas</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <header>
-        <a href="../index.php" class="home-link">&#8962;</a>
+        <span class="material-symbols-outlined">
+            <a href="../index.php" class="home-link">home</a>
+        </span>
         <img src="../imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
@@ -69,6 +72,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>
 
 <?php
