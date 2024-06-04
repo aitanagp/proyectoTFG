@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar por nacionalidad</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <header>
+        <span class="material-symbols-outlined">
+            <a href="../logout.php" class="logout">logout</a>
+        </span>
         <span class="material-symbols-outlined">
             <a href="../index.php" class="home-link">home</a>
         </span>

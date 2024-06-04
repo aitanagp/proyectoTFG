@@ -16,34 +16,41 @@ body {
 }
 
 .home-link {
-  position: absolute; /* Colocar en una posición absoluta */
-  top: 0; /* Alinear arriba */
-  left: 0; /* Alinear a la izquierda */
-  font-size: 24px; /* Tamaño del ícono */
-  padding: 10px; /* Espacio alrededor del ícono */
-  text-decoration: none; /* Quitar subrayado del enlace */
-  color: inherit; /* Heredar el color del texto */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
 }
 
+/*Estilos para el login*/
+.header-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.login-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/*Estilos para el logout*/
 .logout {
   position: absolute;
   top: 10px;
   right: 50px;
   text-align: right;
-  text-decoration: none; /* Quitar subrayado del enlace */
+  text-decoration: none;
+  /* Quitar subrayado del enlace */
   color: inherit;
-}
-/* Estilos para el login */
-.login-container {
-  background-color: var(--text-color-white);
-  padding: 20px;
-  border-radius: 6px;
-  width: 250px;
-  text-align: center;
-  margin-right: 20px;
-  position: absolute;
-  top: 10px;
-  z-index: 1;
 }
 
 .form-group {
@@ -55,7 +62,7 @@ body {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #333333;
+  color: var(--text-color-white);
 }
 
 .form-group input {
@@ -96,7 +103,8 @@ main {
   padding: 40px;
   background-color: var(--background-color-dark-gray);
   max-width: 800px;
-  margin: 250px auto 100px; /* Ajustar margen superior para evitar que el contenido se esconda detrás de la cabecera */
+  margin: 250px auto 100px;
+  /* Ajustar margen superior para evitar que el contenido se esconda detrás de la cabecera */
   padding-top: 80px;
 }
 
@@ -109,6 +117,7 @@ form label {
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 /* Estilos para el logotipo */
 .logo {
   width: 100px;
@@ -367,4 +376,3 @@ footer li a:hover {
   text-decoration: none;
   cursor: pointer;
 }
-

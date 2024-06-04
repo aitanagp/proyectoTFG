@@ -2,8 +2,7 @@
 //seguridad de session
 session_start();
 if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
-    echo "no tienes acceso";
-    header("refresh:1;url=../index.php");
+    header("Location:../error.php");
     die();
 }
 ?>
@@ -21,6 +20,9 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
 
 <body>
     <header>
+        <span class="material-symbols-outlined">
+            <a href="../logout.php" class="logout">logout</a>
+        </span>
         <span class="material-symbols-outlined">
             <a href="../index.php" class="home-link">home</a>
         </span>

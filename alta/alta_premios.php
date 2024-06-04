@@ -2,12 +2,10 @@
 //seguridad de session
 session_start();
 if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
-    echo "no tienes acceso";
-    header("refresh:1;url=../index.php");
+    header("Location:../error.php");
     die();
 }
-?>
-<?php
+
 require_once "../funciones.php";
 $ruta = obtenerdirseg();
 require_once $ruta . "conectaDB.php";
@@ -140,12 +138,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_interprete'])) 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Alta de premios</title>
 </head>
 
 <body>
     <header>
+        <span class="material-symbols-outlined">
+            <a href="../logout.php" class="logout">logout</a>
+        </span>
         <span class="material-symbols-outlined">
             <a href="../index.php" class="home-link">home</a>
         </span>
