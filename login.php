@@ -8,13 +8,13 @@
 </head>
 
 <body>
-    <div class="header-container">
+    <div class="login-container">
         <img src="imagenes/logo.jpg" alt="Logo" class="logo">
         <div class="title">
             <h1>Base de Datos de Películas</h1>
         </div>
         <br>
-        <div class="login-container">
+        <div class="">
             <form action="login.php" method="post">
                 <div class="form-group">
                     <label for="nombre">Nombre de Usuario</label>
