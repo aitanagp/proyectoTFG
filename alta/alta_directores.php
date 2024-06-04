@@ -9,6 +9,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
 
 <!DOCTYPE html>
 <html lang="en">
+    //
 
 <head>
     <meta charset="UTF-8">
