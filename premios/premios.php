@@ -13,7 +13,7 @@
 <body>
     <header>
         <span class="material-symbols-outlined">
-            <a href="logout.php" class="logout">logout</a>
+            <a href="../logout.php" class="logout">logout</a>
         </span>
         <span class="material-symbols-outlined">
             <a href="../index.php" class="home-link">home</a>
