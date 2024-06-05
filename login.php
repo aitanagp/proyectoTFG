@@ -27,6 +27,20 @@
                 <button type="submit">Login</button>
             </form>
         </div>
+        <br><br>
+        <div>
+            <form action="registrarse.php" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre de usuario</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
     </div>
 </body>
 
@@ -63,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($filas['idlogin'] == 1) { // administrador
             header("Location: index.php"); // este usuario tiene permisos de añadir, eliminar y editar
-        } else if ($filas['idlogin'] == 2) { // usuario
+        } else { // usuario
             header("Location: index.php"); // este usuario solo tiene permisos de consulta
         }
         exit();
