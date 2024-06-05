@@ -27,25 +27,13 @@
                 <button type="submit">Login</button>
             </form>
         </div>
-        <br><br>
-        <div>
-            <form action="registrarse.php" method="post">
-                <div class="form-group">
-                    <label for="nombre">Nombre de usuario</label>
-                    <input type="text" id="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit">Registrarse</button>
-            </form>
-        </div>
+        <br>
+        <hr>
+        <p>No tienes cuenta? <a href="registrarse.php" title="Crear una cuenta">Crear una cuenta</a>.</p>
     </div>
 </body>
 
 </html>
-
 <?php
 session_start();
 require_once "funciones.php";
@@ -63,30 +51,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("La conexión falló: " . $conexion->connect_error);
     }
 
-    // Consulta para verificar el nombre de usuario y la contraseña
-    $consulta = "SELECT idlogin FROM login WHERE nombre = ? AND password = ?";
+    // Consulta para verificar el nombre de usuario
+    $consulta = "SELECT idlogin, password FROM login WHERE nombre = ?";
     $stmt = $conexion->prepare($consulta);
-    $stmt->bind_param("ss", $nombre, $password);
+    $stmt->bind_param("s", $nombre);
     $stmt->execute();
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows > 0) {
         $filas = $resultado->fetch_assoc();
-        $_SESSION['nombre'] = $nombre;
-        $_SESSION['rol'] = $filas['idlogin'];
+        // Verificar la contraseña ingresada con la contraseña cifrada
+        if (password_verify($password, $filas['password'])) {
+            $_SESSION['nombre'] = $nombre;
+            $_SESSION['rol'] = $filas['idlogin'];
 
-        if ($filas['idlogin'] == 1) { // administrador
-            header("Location: index.php"); // este usuario tiene permisos de añadir, eliminar y editar
-        } else { // usuario
-            header("Location: index.php"); // este usuario solo tiene permisos de consulta
+            if ($filas['idlogin'] == 1) { // administrador
+                header("Location: index.php"); // este usuario tiene permisos de añadir, eliminar y editar
+            } else { // usuario
+                header("Location: index.php"); // este usuario solo tiene permisos de consulta
+            }
+            exit();
+        } else {
+            echo "Nombre de usuario o contraseña incorrectos.";
         }
-        exit();
     } else {
         echo "Nombre de usuario o contraseña incorrectos.";
     }
 
     $stmt->close();
-    $resultado->free();
     $conexion->close();
 }
 ?>
