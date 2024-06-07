@@ -9,7 +9,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
 
 <!DOCTYPE html>
 <html lang="en">
-    //
+//
 
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,10 @@ if (!isset($_SESSION['nombre']) || $_SESSION['nombre'] != 'Administrador') {
 
 <body>
     <header>
+        <?php if (isset($_SESSION['foto_perfil'])): ?>
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['foto_perfil']); ?>" alt="Foto de Perfil"
+                class="perfil-pequeno">
+        <?php endif; ?>
         <span class="material-symbols-outlined">
             <a href="../logout.php" class="logout">logout</a>
         </span>

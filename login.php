@@ -51,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("La conexión falló: " . $conexion->connect_error);
     }
 
-    // Consulta para verificar el nombre de usuario
-    $consulta = "SELECT idlogin, password FROM login WHERE nombre = ?";
+    // Consulta para verificar el nombre de usuario y la contraseña
+    $consulta = "SELECT idlogin, imagen, password FROM login WHERE nombre = ?";
     $stmt = $conexion->prepare($consulta);
     $stmt->bind_param("s", $nombre);
     $stmt->execute();
@@ -60,14 +60,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($resultado->num_rows > 0) {
         $filas = $resultado->fetch_assoc();
-        // Verificar la contraseña ingresada con la contraseña cifrada
+
+        // Verificar la contraseña
         if (password_verify($password, $filas['password'])) {
             $_SESSION['nombre'] = $nombre;
             $_SESSION['rol'] = $filas['idlogin'];
+            $_SESSION['foto_perfil'] = $filas['imagen'];
 
             if ($filas['idlogin'] == 1) { // administrador
                 header("Location: index.php"); // este usuario tiene permisos de añadir, eliminar y editar
-            } else { // usuario
+            } else if ($filas['idlogin'] >= 2) { // usuario
                 header("Location: index.php"); // este usuario solo tiene permisos de consulta
             }
             exit();
@@ -79,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
+    $resultado->free();
     $conexion->close();
 }
 ?>

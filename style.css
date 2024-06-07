@@ -25,11 +25,19 @@ body {
   color: inherit;
 }
 
-/*Estilos para el login
-.header-container {
-  
+/*Estilos para la foto de perfil*/
+.perfil-pequeno {
+  width: 40px;
+  position: absolute;
+  top: 10px;
+  right: 90px;
+  text-align: right;
+  border-color: #000;
+  border-width: 5px;
+  border-style: solid;
 }
-*/
+
+/*Estilos para el login*/
 .login-container {
   width: 300px;
   margin: 0 auto;
@@ -50,7 +58,6 @@ body {
   right: 50px;
   text-align: right;
   text-decoration: none;
-  /* Quitar subrayado del enlace */
   color: inherit;
 }
 

@@ -23,14 +23,16 @@ $rol = $_SESSION['rol'];
 
 <body>
     <header>
+        <?php if (isset($_SESSION['foto_perfil'])): ?>
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['foto_perfil']); ?>" alt="Foto de Perfil"
+                class="perfil-pequeno">
+        <?php endif; ?>
         <div class="header-container">
             <img src="imagenes/logo.jpg" alt="Logo" class="logo">
             <div class="title">
                 <h1>Base de Datos de Películas</h1>
             </div>
             <br>
-            <span class="material-symbols-outlined">
-            </span>
             <span class="material-symbols-outlined">
                 <a href="logout.php" class="logout">logout</a>
             </span>
@@ -71,9 +73,7 @@ $rol = $_SESSION['rol'];
             }
             ?>
         </div>
-
         <br>
-
         <h2>Actores</h2>
         <div class='interpretes'>
             <?php
@@ -93,8 +93,6 @@ $rol = $_SESSION['rol'];
             }
             ?>
         </div>
-
-
     </main>
     <footer>
         <p>© 2024 AGarcía. Todos los derechos reservados.</p>
