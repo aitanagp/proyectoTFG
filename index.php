@@ -24,13 +24,12 @@ $rol = $_SESSION['rol'];
 <body>
     <header>
         <?php if (isset($_SESSION['nombre'])): ?>
-            <a href="editar_perfil.php">
-                <?php if (isset($_SESSION['foto_perfil'])): ?>
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['foto_perfil']); ?>"
-                        alt="Foto de Perfil" class="perfil-pequeno">
-                <?php else: ?>
-                    <img src="../imagenes/default_perfil.jpg" alt="Foto de Perfil" class="perfil-pequeno">
-                <?php endif; ?>
+            <?php if (isset($_SESSION['foto_perfil'])): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['foto_perfil']); ?>" alt="Foto de Perfil"
+                    class="perfil-pequeno">
+            <?php else: ?>
+                <img src="../imagenes/default_perfil.jpg" alt="Foto de Perfil" class="perfil-pequeno">
+            <?php endif; ?>
         <?php endif; ?>
         <div class="header-container">
             <img src="imagenes/logo.jpg" alt="Logo" class="logo">
