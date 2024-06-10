@@ -11,6 +11,7 @@
         <h1>NO TIENES PERMISOS DE ADMINISTRADOR</h1>
         <p>Prueba a iniciar sesión con otro usuario</p>
         <?php
+            //Refresca esta página ne 5seg y redirige a index
             header("refresh:5;url=index.php");
         ?>
     </main>

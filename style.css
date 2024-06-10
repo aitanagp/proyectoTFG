@@ -15,6 +15,7 @@ body {
   color: var(--text-color-white);
 }
 
+/*Estilos para el icono de casita*/
 .home-link {
   position: absolute;
   top: 0;
@@ -61,6 +62,7 @@ body {
   color: inherit;
 }
 
+/*Estilos para los formularios*/
 .form-group {
   margin-bottom: 10px;
   text-align: left;
@@ -112,7 +114,6 @@ main {
   background-color: var(--background-color-dark-gray);
   max-width: 800px;
   margin: 250px auto 100px;
-  /* Ajustar margen superior para evitar que el contenido se esconda detrás de la cabecera */
   padding-top: 80px;
 }
 
